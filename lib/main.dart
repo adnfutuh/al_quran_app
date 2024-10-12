@@ -1,4 +1,4 @@
-import 'package:al_quran_app/core/injector.dart';
+import 'package:al_quran_app/core/di/injector.dart';
 import 'package:al_quran_app/features/home/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
