@@ -1,23 +1,27 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:al_quran_app/core/exeptions/app_exception.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:injectable/injectable.dart';
 
-abstract class InternetConnectionSevice {
-  Future<void> chekConnectivityState();
+abstract class InternetConnectionService {
+  Future<void> checkConnectivityState();
 }
 
-class InternetConnectionServiceImpl implements InternetConnectionSevice {
+@LazySingleton(as: InternetConnectionService)
+class InternetConnectionServiceImpl implements InternetConnectionService {
   final Connectivity connectivity;
+
   InternetConnectionServiceImpl({required this.connectivity});
 
   @override
-  Future<void> chekConnectivityState() async {
+  Future<void> checkConnectivityState() async {
     try {
       final List<ConnectivityResult> result =
           await connectivity.checkConnectivity();
-      if (result.contains(ConnectivityResult.wifi)) {
-        return;
-      } else if (result.contains(ConnectivityResult.wifi)) {
-        return;
+      // ignore: unrelated_type_equality_checks
+      if (result == ConnectivityResult.wifi ||
+          // ignore: unrelated_type_equality_checks
+          result == ConnectivityResult.mobile) {
+        return; // Koneksi ada
       } else {
         throw const InternetConnectionException();
       }
@@ -25,4 +29,10 @@ class InternetConnectionServiceImpl implements InternetConnectionSevice {
       throw InternetConnectionException(message: e.toString());
     }
   }
+}
+
+@module
+abstract class ConnectivityModule {
+  @lazySingleton
+  Connectivity get connectivity => Connectivity();
 }
