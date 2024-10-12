@@ -15,8 +15,8 @@ class DefaultAppExeption extends AppException {
   });
 }
 
-class InternetConnectionExeption extends AppException {
-  const InternetConnectionExeption({
+class InternetConnectionException extends AppException {
+  const InternetConnectionException({
     super.code = 'INTERNET_CONNECTION_ERROR',
     super.message = 'INTERNET_CONNECTION_EXCEPTION',
   });
