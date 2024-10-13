@@ -43,6 +43,7 @@ class LoggerServiceImpl implements LoggerService {
   @override
   void verbose({required String message}) {
     if (_showDebug) {
+      // ignore: deprecated_member_use
       logger.v(message);
     }
   }

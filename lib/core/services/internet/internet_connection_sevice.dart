@@ -30,9 +30,3 @@ class InternetConnectionServiceImpl implements InternetConnectionService {
     }
   }
 }
-
-@module
-abstract class ConnectivityModule {
-  @lazySingleton
-  Connectivity get connectivity => Connectivity();
-}
