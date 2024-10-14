@@ -1,5 +1,5 @@
-import 'package:al_quran_app/core/exeptions/app_exception.dart';
-import 'package:al_quran_app/core/services/internet/internet_connection_sevice.dart';
+import 'package:al_quran_app/core/exceptions/app_exception.dart';
+import 'package:al_quran_app/core/services/http/internet_connection_service.dart';
 import 'package:al_quran_app/core/services/logger/logger.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';

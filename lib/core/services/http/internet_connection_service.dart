@@ -1,4 +1,4 @@
-import 'package:al_quran_app/core/exeptions/app_exception.dart';
+import 'package:al_quran_app/core/exceptions/app_exception.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:injectable/injectable.dart';
 

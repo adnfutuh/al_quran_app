@@ -1,3 +1,4 @@
+import 'package:al_quran_app/core/design_system/design_system.dart';
 import 'package:flutter/material.dart';
 
 import '../ui/widgets/home_header_widget.dart';
@@ -7,8 +8,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Column(
+    return Scaffold(
+      backgroundColor: Pallet.whiteScaffold,
+      body: const Column(
         children: [
           HomeHeaderWidget(),
           SizedBox(height: 100),
