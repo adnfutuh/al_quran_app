@@ -1,3 +1,4 @@
+import 'package:al_quran_app/core/design_system/themes/pallet.dart';
 import 'package:flutter/material.dart';
 
 class CircularAvatarWidget extends StatelessWidget {
@@ -12,7 +13,7 @@ class CircularAvatarWidget extends StatelessWidget {
       child: Icon(
         Icons.person,
         size: size * 0.8,
-        color: Colors.white,
+        color: Pallet.white,
       ),
     );
   }
