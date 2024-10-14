@@ -1,3 +1,4 @@
+import 'package:al_quran_app/core/design_system/circular_avatar_widget.dart';
 import 'package:flutter/material.dart';
 
 class HomeHeaderWidget extends StatelessWidget {
@@ -7,7 +8,8 @@ class HomeHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Row(
       children: [
-        Icon(Icons.home),
+        CircularAvatarWidget(size: 40),
+        SizedBox(height: 10),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
