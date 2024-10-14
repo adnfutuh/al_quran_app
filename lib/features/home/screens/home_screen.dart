@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../ui/widgets/home_header_widget.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -11,7 +13,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: const Column(
         children: [
-          Center(child: Text('Banner')),
+          HomeHeaderWidget(),
           SizedBox(height: 100),
           Center(child: Text('Feature Widget')),
           SizedBox(height: 100),
