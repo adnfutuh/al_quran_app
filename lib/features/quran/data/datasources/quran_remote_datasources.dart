@@ -10,7 +10,7 @@ abstract class QuranRemoteDatasources {
 @LazySingleton(as: QuranRemoteDatasources)
 class QuranRemoteDatasourcesImpl implements QuranRemoteDatasources {
   final HttpClientService httpClientService;
-  QuranRemoteDatasourcesImpl({required this.httpClientService});
+  QuranRemoteDatasourcesImpl({@Named('base') required this.httpClientService});
   @override
   Future<SurahModel> getQuran({required int id}) async {
     try {
@@ -18,7 +18,7 @@ class QuranRemoteDatasourcesImpl implements QuranRemoteDatasources {
           path: 'https://quran-api.santrikoding.com/api/surah/$id');
       return SurahModel.fromJson(response.data);
     } catch (e) {
-      throw ServerException(message: e.toString());
+      throw ServerException(error: e.toString(), message: e.toString());
     }
   }
 }
