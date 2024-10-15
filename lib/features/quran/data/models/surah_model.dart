@@ -6,6 +6,9 @@ part 'surah_model.freezed.dart';
 
 @freezed
 class SurahModel with _$SurahModel {
+  @JsonSerializable(
+    fieldRename: FieldRename.snake,
+  )
   const factory SurahModel({
     required bool status,
     required int nomor,
@@ -17,7 +20,7 @@ class SurahModel with _$SurahModel {
     required String deskripsi,
     required String audio,
     required List<AyatModel> ayat,
-    required NextAyatModel nextAyatModel,
+    @JsonKey(name: 'surat_selanjutnya') required NextAyatModel nextAyatModel,
     required dynamic suratSebelumnya,
   }) = _SurahModel;
 
