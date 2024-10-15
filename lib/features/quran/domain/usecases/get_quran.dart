@@ -1,9 +1,11 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/exceptions/app_exception.dart';
 import '../../data/models/surah_model.dart';
 import '../../data/repositories/quran_repositories.dart';
 
+@lazySingleton
 class GetQuran {
   final QuranRepository repository;
   GetQuran({required this.repository});
