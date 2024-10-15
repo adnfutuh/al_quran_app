@@ -330,6 +330,8 @@ abstract class _$$SuccessImplCopyWith<$Res> {
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({CityDetail cityDetail});
+
+  $CityDetailCopyWith<$Res> get cityDetail;
 }
 
 /// @nodoc
@@ -345,14 +347,24 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cityDetail = freezed,
+    Object? cityDetail = null,
   }) {
     return _then(_$SuccessImpl(
-      cityDetail: freezed == cityDetail
+      cityDetail: null == cityDetail
           ? _value.cityDetail
           : cityDetail // ignore: cast_nullable_to_non_nullable
               as CityDetail,
     ));
+  }
+
+  /// Create a copy of PrayerState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CityDetailCopyWith<$Res> get cityDetail {
+    return $CityDetailCopyWith<$Res>(_value.cityDetail, (value) {
+      return _then(_value.copyWith(cityDetail: value));
+    });
   }
 }
 
@@ -374,13 +386,12 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            const DeepCollectionEquality()
-                .equals(other.cityDetail, cityDetail));
+            (identical(other.cityDetail, cityDetail) ||
+                other.cityDetail == cityDetail));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(cityDetail));
+  int get hashCode => Object.hash(runtimeType, cityDetail);
 
   /// Create a copy of PrayerState
   /// with the given fields replaced by the non-null parameter values.
