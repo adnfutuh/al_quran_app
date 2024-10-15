@@ -1,0 +1,26 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'ayat_model.dart';
+import 'next_ayat_model.dart';
+part 'surah_model.freezed.dart';
+
+@freezed
+class SurahModel with _$SurahModel {
+  const factory SurahModel({
+    required bool status,
+    required int nomor,
+    required String nama,
+    required int jumlahAyat,
+    required String namaLatin,
+    required String arti,
+    required String tempatTurun,
+    required String deskripsi,
+    required String audio,
+    required List<AyatModel> ayat,
+    required NextAyatModel nextAyatModel,
+    required dynamic suratSebelumnya,
+  }) = _SurahModel;
+
+  factory SurahModel.fromJson(Map<String, dynamic> json) =>
+      _$SurahModelFromJson(json);
+}
