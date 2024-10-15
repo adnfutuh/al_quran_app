@@ -3,14 +3,14 @@ import 'package:al_quran_app/features/quran/data/datasources/quran_remote_dataso
 import 'package:al_quran_app/features/quran/data/models/surah_model.dart';
 import 'package:dartz/dartz.dart';
 
-abstract class QuranRepositories {
+abstract class QuranRepository {
   Future<Either<AppException, SurahModel>> getQuran({required int id});
 }
 
-class QuranRepositoriesImpl implements QuranRepositories {
+class QuranRepositoryImpl implements QuranRepository {
   final QuranRemoteDatasources quranRemoteDatasource;
 
-  QuranRepositoriesImpl({required this.quranRemoteDatasource});
+  QuranRepositoryImpl({required this.quranRemoteDatasource});
   @override
   Future<Either<AppException, SurahModel>> getQuran({required int id}) async {
     try {
