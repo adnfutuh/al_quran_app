@@ -8,8 +8,8 @@ abstract class AppException extends Equatable implements Exception {
   List<Object?> get props => [code, message];
 }
 
-class DefaultAppExeption extends AppException {
-  const DefaultAppExeption({
+class DefaultAppException extends AppException {
+  const DefaultAppException({
     super.code = '',
     super.message = 'DEFAULT_APP_EXCEPTION',
   });
