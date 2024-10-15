@@ -30,6 +30,7 @@ mixin _$SurahModel {
   String get deskripsi => throw _privateConstructorUsedError;
   String get audio => throw _privateConstructorUsedError;
   List<AyatModel> get ayat => throw _privateConstructorUsedError;
+  @JsonKey(name: 'surat_selanjutnya')
   NextAyatModel get nextAyatModel => throw _privateConstructorUsedError;
   dynamic get suratSebelumnya => throw _privateConstructorUsedError;
 
@@ -60,7 +61,7 @@ abstract class $SurahModelCopyWith<$Res> {
       String deskripsi,
       String audio,
       List<AyatModel> ayat,
-      NextAyatModel nextAyatModel,
+      @JsonKey(name: 'surat_selanjutnya') NextAyatModel nextAyatModel,
       dynamic suratSebelumnya});
 
   $NextAyatModelCopyWith<$Res> get nextAyatModel;
@@ -176,7 +177,7 @@ abstract class _$$SurahModelImplCopyWith<$Res>
       String deskripsi,
       String audio,
       List<AyatModel> ayat,
-      NextAyatModel nextAyatModel,
+      @JsonKey(name: 'surat_selanjutnya') NextAyatModel nextAyatModel,
       dynamic suratSebelumnya});
 
   @override
@@ -263,7 +264,8 @@ class __$$SurahModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$SurahModelImpl implements _SurahModel {
   const _$SurahModelImpl(
       {required this.status,
@@ -276,7 +278,7 @@ class _$SurahModelImpl implements _SurahModel {
       required this.deskripsi,
       required this.audio,
       required final List<AyatModel> ayat,
-      required this.nextAyatModel,
+      @JsonKey(name: 'surat_selanjutnya') required this.nextAyatModel,
       required this.suratSebelumnya})
       : _ayat = ayat;
 
@@ -310,6 +312,7 @@ class _$SurahModelImpl implements _SurahModel {
   }
 
   @override
+  @JsonKey(name: 'surat_selanjutnya')
   final NextAyatModel nextAyatModel;
   @override
   final dynamic suratSebelumnya;
@@ -389,6 +392,7 @@ abstract class _SurahModel implements SurahModel {
       required final String deskripsi,
       required final String audio,
       required final List<AyatModel> ayat,
+      @JsonKey(name: 'surat_selanjutnya')
       required final NextAyatModel nextAyatModel,
       required final dynamic suratSebelumnya}) = _$SurahModelImpl;
 
@@ -416,6 +420,7 @@ abstract class _SurahModel implements SurahModel {
   @override
   List<AyatModel> get ayat;
   @override
+  @JsonKey(name: 'surat_selanjutnya')
   NextAyatModel get nextAyatModel;
   @override
   dynamic get suratSebelumnya;

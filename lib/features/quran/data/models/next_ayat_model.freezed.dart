@@ -25,11 +25,11 @@ mixin _$NextAyatModel {
   int get number => throw _privateConstructorUsedError;
   @JsonKey(name: 'nama')
   String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'namaLatin')
+  @JsonKey(name: 'nama_latin')
   String get latinName => throw _privateConstructorUsedError;
-  @JsonKey(name: 'jumlahAyat')
+  @JsonKey(name: 'jumlah_ayat')
   int get verseCount => throw _privateConstructorUsedError;
-  @JsonKey(name: 'tempatTurun')
+  @JsonKey(name: 'tempat_turun')
   String get placeOfDescent => throw _privateConstructorUsedError;
   @JsonKey(name: 'arti')
   String get meaning => throw _privateConstructorUsedError;
@@ -57,9 +57,9 @@ abstract class $NextAyatModelCopyWith<$Res> {
       {int id,
       @JsonKey(name: 'nomor') int number,
       @JsonKey(name: 'nama') String name,
-      @JsonKey(name: 'namaLatin') String latinName,
-      @JsonKey(name: 'jumlahAyat') int verseCount,
-      @JsonKey(name: 'tempatTurun') String placeOfDescent,
+      @JsonKey(name: 'nama_latin') String latinName,
+      @JsonKey(name: 'jumlah_ayat') int verseCount,
+      @JsonKey(name: 'tempat_turun') String placeOfDescent,
       @JsonKey(name: 'arti') String meaning,
       @JsonKey(name: 'deskripsi') String description,
       String audio});
@@ -143,9 +143,9 @@ abstract class _$$NextAyatModelImplCopyWith<$Res>
       {int id,
       @JsonKey(name: 'nomor') int number,
       @JsonKey(name: 'nama') String name,
-      @JsonKey(name: 'namaLatin') String latinName,
-      @JsonKey(name: 'jumlahAyat') int verseCount,
-      @JsonKey(name: 'tempatTurun') String placeOfDescent,
+      @JsonKey(name: 'nama_latin') String latinName,
+      @JsonKey(name: 'jumlah_ayat') int verseCount,
+      @JsonKey(name: 'tempat_turun') String placeOfDescent,
       @JsonKey(name: 'arti') String meaning,
       @JsonKey(name: 'deskripsi') String description,
       String audio});
@@ -216,15 +216,16 @@ class __$$NextAyatModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$NextAyatModelImpl implements _NextAyatModel {
   const _$NextAyatModelImpl(
       {required this.id,
       @JsonKey(name: 'nomor') required this.number,
       @JsonKey(name: 'nama') required this.name,
-      @JsonKey(name: 'namaLatin') required this.latinName,
-      @JsonKey(name: 'jumlahAyat') required this.verseCount,
-      @JsonKey(name: 'tempatTurun') required this.placeOfDescent,
+      @JsonKey(name: 'nama_latin') required this.latinName,
+      @JsonKey(name: 'jumlah_ayat') required this.verseCount,
+      @JsonKey(name: 'tempat_turun') required this.placeOfDescent,
       @JsonKey(name: 'arti') required this.meaning,
       @JsonKey(name: 'deskripsi') required this.description,
       required this.audio});
@@ -241,13 +242,13 @@ class _$NextAyatModelImpl implements _NextAyatModel {
   @JsonKey(name: 'nama')
   final String name;
   @override
-  @JsonKey(name: 'namaLatin')
+  @JsonKey(name: 'nama_latin')
   final String latinName;
   @override
-  @JsonKey(name: 'jumlahAyat')
+  @JsonKey(name: 'jumlah_ayat')
   final int verseCount;
   @override
-  @JsonKey(name: 'tempatTurun')
+  @JsonKey(name: 'tempat_turun')
   final String placeOfDescent;
   @override
   @JsonKey(name: 'arti')
@@ -309,9 +310,9 @@ abstract class _NextAyatModel implements NextAyatModel {
       {required final int id,
       @JsonKey(name: 'nomor') required final int number,
       @JsonKey(name: 'nama') required final String name,
-      @JsonKey(name: 'namaLatin') required final String latinName,
-      @JsonKey(name: 'jumlahAyat') required final int verseCount,
-      @JsonKey(name: 'tempatTurun') required final String placeOfDescent,
+      @JsonKey(name: 'nama_latin') required final String latinName,
+      @JsonKey(name: 'jumlah_ayat') required final int verseCount,
+      @JsonKey(name: 'tempat_turun') required final String placeOfDescent,
       @JsonKey(name: 'arti') required final String meaning,
       @JsonKey(name: 'deskripsi') required final String description,
       required final String audio}) = _$NextAyatModelImpl;
@@ -328,13 +329,13 @@ abstract class _NextAyatModel implements NextAyatModel {
   @JsonKey(name: 'nama')
   String get name;
   @override
-  @JsonKey(name: 'namaLatin')
+  @JsonKey(name: 'nama_latin')
   String get latinName;
   @override
-  @JsonKey(name: 'jumlahAyat')
+  @JsonKey(name: 'jumlah_ayat')
   int get verseCount;
   @override
-  @JsonKey(name: 'tempatTurun')
+  @JsonKey(name: 'tempat_turun')
   String get placeOfDescent;
   @override
   @JsonKey(name: 'arti')

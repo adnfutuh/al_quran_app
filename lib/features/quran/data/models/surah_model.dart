@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'ayat_model.dart';
 import 'next_ayat_model.dart';
 part 'surah_model.freezed.dart';
+part 'surah_model.g.dart';
 
 @freezed
 class SurahModel with _$SurahModel {

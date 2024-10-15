@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'ayat_model.freezed.dart';
+part 'ayat_model.g.dart';
 
 @freezed
 class AyatModel with _$AyatModel {
