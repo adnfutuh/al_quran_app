@@ -4,8 +4,10 @@ import 'injector.config.dart';
 
 @InjectableInit(
   initializerName: r'$initGetIt',
+  preferRelativeImports: true,
+  asExtension: false,
 )
 Future<void> configureDependencies() async {
   final getIt = GetIt.instance;
-  getIt.$initGetIt();
+  $initGetIt(getIt);
 }
