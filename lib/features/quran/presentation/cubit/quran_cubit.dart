@@ -13,7 +13,7 @@ class QuranCubit extends Cubit<QuranState> {
   final GetQuran getQuran;
   QuranCubit(this.getQuran) : super(const QuranState.initial());
 
-  void getQuranData(int id) async {
+  void getQuranData(String id) async {
     emit(const QuranState.loading());
     final result = await getQuran(id);
     result.fold((error) {

@@ -55,7 +55,7 @@ class GeolocationServiceImpl implements GeolocationService {
       );
     } catch (e) {
       // Menangkap semua kesalahan lain yang tidak ditangani sebelumnya
-      throw DefaultAppException(message: 'An unexpected error occurred: $e');
+      throw DefaultAppException(message: e.toString());
     }
   }
 }

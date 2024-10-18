@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/exceptions/app_exception.dart';
+import 'package:al_quran_app/core/core.dart';
 import '../../data/models/surah_model.dart';
 import '../../data/repositories/quran_repositories.dart';
 
@@ -9,7 +9,7 @@ import '../../data/repositories/quran_repositories.dart';
 class GetQuran {
   final QuranRepository repository;
   GetQuran({required this.repository});
-  Future<Either<AppException, SurahModel>> call(int id) async {
+  Future<Either<AppException, SurahModel>> call(String id) async {
     return await repository.getQuran(id: id);
   }
 }

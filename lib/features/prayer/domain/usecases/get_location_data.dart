@@ -2,7 +2,7 @@ import 'package:al_quran_app/core/services/geolocation/geolocation_service.dart'
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/exceptions/app_exception.dart';
+import 'package:al_quran_app/core/core.dart';
 import '../../../../core/services/geolocation/city_detail_object.dart';
 
 @lazySingleton
