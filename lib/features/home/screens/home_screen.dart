@@ -1,5 +1,6 @@
 import 'package:al_quran_app/core/design_system/design_system.dart';
-import 'package:al_quran_app/features/prayer/ui/widgets/prayer_time_widget.dart';
+import 'package:al_quran_app/features/prayer/presentation/ui/screens/quran_screen.dart';
+import 'package:al_quran_app/features/prayer/presentation/ui/widgets/prayer_time_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../ui/widgets/home_header_widget.dart';
@@ -15,6 +16,7 @@ class HomeScreen extends StatelessWidget {
         children: [
           HomeHeaderWidget(),
           PrayerTimeWidget(),
+          QuranScreen(),
           SizedBox(height: 100),
           Center(child: Text('Feature Widget')),
           SizedBox(height: 100),
