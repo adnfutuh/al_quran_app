@@ -17,11 +17,10 @@ class InternetConnectionServiceImpl implements InternetConnectionService {
     try {
       final List<ConnectivityResult> result =
           await connectivity.checkConnectivity();
-      // ignore: unrelated_type_equality_checks
-      if (result == ConnectivityResult.wifi ||
-          // ignore: unrelated_type_equality_checks
-          result == ConnectivityResult.mobile) {
-        return; // Koneksi ada
+      if (result.contains(ConnectivityResult.wifi)) {
+        return;
+      } else if (result.contains(ConnectivityResult.mobile)) {
+        return;
       } else {
         throw const InternetConnectionException();
       }

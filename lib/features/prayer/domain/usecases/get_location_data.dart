@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 import 'package:al_quran_app/core/core.dart';
-import '../../../../core/services/geolocation/city_detail_object.dart';
+import '../../../../core/services/geolocation/city_detail.dart';
 
 @lazySingleton
 class GetLocationData {

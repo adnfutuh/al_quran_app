@@ -5,7 +5,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
 
-import 'city_detail_object.dart';
+import 'city_detail.dart';
 
 @LazySingleton(as: GeolocationService)
 class GeolocationServiceImpl implements GeolocationService {

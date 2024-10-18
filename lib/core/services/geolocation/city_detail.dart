@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'city_detail_object.freezed.dart';
-part 'city_detail_object.g.dart';
+part 'city_detail.freezed.dart';
+part 'city_detail.g.dart';
 
 @freezed
 class CityDetail with _$CityDetail {

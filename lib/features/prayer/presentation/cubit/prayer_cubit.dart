@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/services/geolocation/city_detail_object.dart';
+import '../../../../core/services/geolocation/city_detail.dart';
 import '../../domain/usecases/get_location_data.dart';
 
 part 'prayer_state.dart';

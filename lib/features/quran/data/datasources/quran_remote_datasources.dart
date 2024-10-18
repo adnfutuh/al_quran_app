@@ -3,14 +3,14 @@ import 'package:al_quran_app/features/quran/data/models/surah_model.dart';
 
 import 'package:injectable/injectable.dart';
 
-abstract class QuranRemoteDatasources {
+abstract class QuranRemoteDatasource {
   Future<SurahModel> getQuran({required String id});
 }
 
-@LazySingleton(as: QuranRemoteDatasources)
-class QuranRemoteDatasourcesImpl implements QuranRemoteDatasources {
+@LazySingleton(as: QuranRemoteDatasource)
+class QuranRemoteDatasourceImpl implements QuranRemoteDatasource {
   final HttpClientService httpClientService;
-  QuranRemoteDatasourcesImpl({@Named('base') required this.httpClientService});
+  QuranRemoteDatasourceImpl({@Named('base') required this.httpClientService});
   @override
   Future<SurahModel> getQuran({required String id}) async {
     try {

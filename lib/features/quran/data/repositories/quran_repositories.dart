@@ -2,13 +2,15 @@ import 'package:al_quran_app/core/core.dart';
 import 'package:al_quran_app/features/quran/data/datasources/quran_remote_datasources.dart';
 import 'package:al_quran_app/features/quran/data/models/surah_model.dart';
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class QuranRepository {
   Future<Either<AppException, SurahModel>> getQuran({required String id});
 }
 
+@LazySingleton(as: QuranRepository)
 class QuranRepositoryImpl implements QuranRepository {
-  final QuranRemoteDatasources quranRemoteDatasource;
+  final QuranRemoteDatasource quranRemoteDatasource;
 
   QuranRepositoryImpl({required this.quranRemoteDatasource});
   @override
