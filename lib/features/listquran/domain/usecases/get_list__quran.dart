@@ -8,7 +8,7 @@ import 'package:injectable/injectable.dart';
 class GetListQuran {
   final ListQuranRepository repository;
   GetListQuran({required this.repository});
-  Future<Either<AppException, ListAyat>> call() async {
+  Future<Either<AppException, List<ListAyat>>> call() async {
     return await repository.getListQuran();
   }
 }

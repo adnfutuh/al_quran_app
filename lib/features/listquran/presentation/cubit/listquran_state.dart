@@ -4,6 +4,7 @@ part of 'listquran_cubit.dart';
 class ListquranState with _$ListquranState {
   const factory ListquranState.initial() = _Initial;
   const factory ListquranState.loading() = _Loading;
-  const factory ListquranState.success({required ListAyat listAyat}) = _Success;
+  const factory ListquranState.success({required List<ListAyat> listAyat}) =
+      _Success;
   const factory ListquranState.error({required AppException error}) = _Error;
 }

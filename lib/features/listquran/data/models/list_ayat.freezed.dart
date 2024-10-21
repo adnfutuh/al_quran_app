@@ -22,8 +22,11 @@ ListAyat _$ListAyatFromJson(Map<String, dynamic> json) {
 mixin _$ListAyat {
   int get nomor => throw _privateConstructorUsedError;
   String get nama => throw _privateConstructorUsedError;
+  @JsonKey(name: 'nama_latin')
   String get namaLatin => throw _privateConstructorUsedError;
+  @JsonKey(name: 'jumlah_ayat')
   int get jumlahAyat => throw _privateConstructorUsedError;
+  @JsonKey(name: 'tempat_turun')
   String get tempatTurun => throw _privateConstructorUsedError;
   String get arti => throw _privateConstructorUsedError;
   String get deskripsi => throw _privateConstructorUsedError;
@@ -47,9 +50,9 @@ abstract class $ListAyatCopyWith<$Res> {
   $Res call(
       {int nomor,
       String nama,
-      String namaLatin,
-      int jumlahAyat,
-      String tempatTurun,
+      @JsonKey(name: 'nama_latin') String namaLatin,
+      @JsonKey(name: 'jumlah_ayat') int jumlahAyat,
+      @JsonKey(name: 'tempat_turun') String tempatTurun,
       String arti,
       String deskripsi,
       String audio});
@@ -127,9 +130,9 @@ abstract class _$$ListAyatImplCopyWith<$Res>
   $Res call(
       {int nomor,
       String nama,
-      String namaLatin,
-      int jumlahAyat,
-      String tempatTurun,
+      @JsonKey(name: 'nama_latin') String namaLatin,
+      @JsonKey(name: 'jumlah_ayat') int jumlahAyat,
+      @JsonKey(name: 'tempat_turun') String tempatTurun,
       String arti,
       String deskripsi,
       String audio});
@@ -195,14 +198,15 @@ class __$$ListAyatImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(fieldRename: FieldRename.snake)
 class _$ListAyatImpl implements _ListAyat {
   const _$ListAyatImpl(
       {required this.nomor,
       required this.nama,
-      required this.namaLatin,
-      required this.jumlahAyat,
-      required this.tempatTurun,
+      @JsonKey(name: 'nama_latin') required this.namaLatin,
+      @JsonKey(name: 'jumlah_ayat') required this.jumlahAyat,
+      @JsonKey(name: 'tempat_turun') required this.tempatTurun,
       required this.arti,
       required this.deskripsi,
       required this.audio});
@@ -215,10 +219,13 @@ class _$ListAyatImpl implements _ListAyat {
   @override
   final String nama;
   @override
+  @JsonKey(name: 'nama_latin')
   final String namaLatin;
   @override
+  @JsonKey(name: 'jumlah_ayat')
   final int jumlahAyat;
   @override
+  @JsonKey(name: 'tempat_turun')
   final String tempatTurun;
   @override
   final String arti;
@@ -276,9 +283,9 @@ abstract class _ListAyat implements ListAyat {
   const factory _ListAyat(
       {required final int nomor,
       required final String nama,
-      required final String namaLatin,
-      required final int jumlahAyat,
-      required final String tempatTurun,
+      @JsonKey(name: 'nama_latin') required final String namaLatin,
+      @JsonKey(name: 'jumlah_ayat') required final int jumlahAyat,
+      @JsonKey(name: 'tempat_turun') required final String tempatTurun,
       required final String arti,
       required final String deskripsi,
       required final String audio}) = _$ListAyatImpl;
@@ -291,10 +298,13 @@ abstract class _ListAyat implements ListAyat {
   @override
   String get nama;
   @override
+  @JsonKey(name: 'nama_latin')
   String get namaLatin;
   @override
+  @JsonKey(name: 'jumlah_ayat')
   int get jumlahAyat;
   @override
+  @JsonKey(name: 'tempat_turun')
   String get tempatTurun;
   @override
   String get arti;

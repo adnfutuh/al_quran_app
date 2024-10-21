@@ -9,7 +9,7 @@ import '../../data/repositories/quran_repositories.dart';
 class GetQuran {
   final QuranRepository repository;
   GetQuran({required this.repository});
-  Future<Either<AppException, SurahModel>> call(String id) async {
+  Future<Either<AppException, SurahModel>> call(int id) async {
     return await repository.getQuran(id: id);
   }
 }

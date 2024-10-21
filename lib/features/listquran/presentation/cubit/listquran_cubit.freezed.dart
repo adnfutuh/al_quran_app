@@ -20,7 +20,7 @@ mixin _$ListquranState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ListAyat listAyat) success,
+    required TResult Function(List<ListAyat> listAyat) success,
     required TResult Function(AppException error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$ListquranState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ListAyat listAyat)? success,
+    TResult? Function(List<ListAyat> listAyat)? success,
     TResult? Function(AppException error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$ListquranState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ListAyat listAyat)? success,
+    TResult Function(List<ListAyat> listAyat)? success,
     TResult Function(AppException error)? error,
     required TResult orElse(),
   }) =>
@@ -132,7 +132,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ListAyat listAyat) success,
+    required TResult Function(List<ListAyat> listAyat) success,
     required TResult Function(AppException error) error,
   }) {
     return initial();
@@ -143,7 +143,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ListAyat listAyat)? success,
+    TResult? Function(List<ListAyat> listAyat)? success,
     TResult? Function(AppException error)? error,
   }) {
     return initial?.call();
@@ -154,7 +154,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ListAyat listAyat)? success,
+    TResult Function(List<ListAyat> listAyat)? success,
     TResult Function(AppException error)? error,
     required TResult orElse(),
   }) {
@@ -249,7 +249,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ListAyat listAyat) success,
+    required TResult Function(List<ListAyat> listAyat) success,
     required TResult Function(AppException error) error,
   }) {
     return loading();
@@ -260,7 +260,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ListAyat listAyat)? success,
+    TResult? Function(List<ListAyat> listAyat)? success,
     TResult? Function(AppException error)? error,
   }) {
     return loading?.call();
@@ -271,7 +271,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ListAyat listAyat)? success,
+    TResult Function(List<ListAyat> listAyat)? success,
     TResult Function(AppException error)? error,
     required TResult orElse(),
   }) {
@@ -329,9 +329,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ListAyat listAyat});
-
-  $ListAyatCopyWith<$Res> get listAyat;
+  $Res call({List<ListAyat> listAyat});
 }
 
 /// @nodoc
@@ -351,30 +349,26 @@ class __$$SuccessImplCopyWithImpl<$Res>
   }) {
     return _then(_$SuccessImpl(
       listAyat: null == listAyat
-          ? _value.listAyat
+          ? _value._listAyat
           : listAyat // ignore: cast_nullable_to_non_nullable
-              as ListAyat,
+              as List<ListAyat>,
     ));
-  }
-
-  /// Create a copy of ListquranState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ListAyatCopyWith<$Res> get listAyat {
-    return $ListAyatCopyWith<$Res>(_value.listAyat, (value) {
-      return _then(_value.copyWith(listAyat: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl({required this.listAyat});
+  const _$SuccessImpl({required final List<ListAyat> listAyat})
+      : _listAyat = listAyat;
 
+  final List<ListAyat> _listAyat;
   @override
-  final ListAyat listAyat;
+  List<ListAyat> get listAyat {
+    if (_listAyat is EqualUnmodifiableListView) return _listAyat;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_listAyat);
+  }
 
   @override
   String toString() {
@@ -386,12 +380,12 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            (identical(other.listAyat, listAyat) ||
-                other.listAyat == listAyat));
+            const DeepCollectionEquality().equals(other._listAyat, _listAyat));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, listAyat);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_listAyat));
 
   /// Create a copy of ListquranState
   /// with the given fields replaced by the non-null parameter values.
@@ -406,7 +400,7 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ListAyat listAyat) success,
+    required TResult Function(List<ListAyat> listAyat) success,
     required TResult Function(AppException error) error,
   }) {
     return success(listAyat);
@@ -417,7 +411,7 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ListAyat listAyat)? success,
+    TResult? Function(List<ListAyat> listAyat)? success,
     TResult? Function(AppException error)? error,
   }) {
     return success?.call(listAyat);
@@ -428,7 +422,7 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ListAyat listAyat)? success,
+    TResult Function(List<ListAyat> listAyat)? success,
     TResult Function(AppException error)? error,
     required TResult orElse(),
   }) {
@@ -477,9 +471,10 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements ListquranState {
-  const factory _Success({required final ListAyat listAyat}) = _$SuccessImpl;
+  const factory _Success({required final List<ListAyat> listAyat}) =
+      _$SuccessImpl;
 
-  ListAyat get listAyat;
+  List<ListAyat> get listAyat;
 
   /// Create a copy of ListquranState
   /// with the given fields replaced by the non-null parameter values.
@@ -558,7 +553,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(ListAyat listAyat) success,
+    required TResult Function(List<ListAyat> listAyat) success,
     required TResult Function(AppException error) error,
   }) {
     return error(this.error);
@@ -569,7 +564,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(ListAyat listAyat)? success,
+    TResult? Function(List<ListAyat> listAyat)? success,
     TResult? Function(AppException error)? error,
   }) {
     return error?.call(this.error);
@@ -580,7 +575,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(ListAyat listAyat)? success,
+    TResult Function(List<ListAyat> listAyat)? success,
     TResult Function(AppException error)? error,
     required TResult orElse(),
   }) {

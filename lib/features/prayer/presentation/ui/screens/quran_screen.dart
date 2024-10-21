@@ -16,7 +16,7 @@ class _QuranScreenState extends State<QuranScreen> {
   @override
   void initState() {
     super.initState();
-    GetIt.I<QuranCubit>().getQuranData('1');
+    GetIt.I<QuranCubit>().getQuranData(1);
   }
 
   @override
