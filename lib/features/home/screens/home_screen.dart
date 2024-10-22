@@ -15,14 +15,16 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => GetIt.I<ListquranCubit>(),
-      child: Scaffold(
-        backgroundColor: Pallet.whiteScaffold,
-        body: const Column(
-          children: [
-            HomeHeaderWidget(),
-            PrayerTimeWidget(),
-            Expanded(child: ListQuranScreen()),
-          ],
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: Pallet.whiteScaffold,
+          body: const Column(
+            children: [
+              HomeHeaderWidget(),
+              PrayerTimeWidget(),
+              Expanded(child: ListQuranScreen()),
+            ],
+          ),
         ),
       ),
     );

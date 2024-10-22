@@ -2,8 +2,7 @@ import 'package:al_quran_app/features/listquran/presentation/cubit/listquran_cub
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-
-import 'quran_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class ListQuranScreen extends StatefulWidget {
   const ListQuranScreen({super.key});
@@ -41,14 +40,11 @@ class _ListQuranScreenState extends State<ListQuranScreen> {
                     itemBuilder: (context, index) {
                       final ayat = listQuran[index];
                       return ListTile(
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 16),
                         title: Text('Surah ${ayat.nomor}: ${ayat.nama}'),
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const QuranScreen(),
-                            ),
-                          );
+                          context.go('/quran/${ayat.nomor}');
                         },
                       );
                     },
