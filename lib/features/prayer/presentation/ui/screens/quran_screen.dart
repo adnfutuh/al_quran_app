@@ -30,7 +30,7 @@ class _QuranScreenState extends State<QuranScreen> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            context.go('/'); // Menggunakan GoRouter untuk kembali
+            context.go('/navbar');
           },
         ),
       ),

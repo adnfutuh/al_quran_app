@@ -6,5 +6,5 @@ class PrayerState with _$PrayerState {
   const factory PrayerState.loading() = _Loading;
   const factory PrayerState.success({required CityDetail cityDetail}) =
       _Success;
-  const factory PrayerState.error() = _Error;
+  const factory PrayerState.error({required AppException error}) = _Error;
 }

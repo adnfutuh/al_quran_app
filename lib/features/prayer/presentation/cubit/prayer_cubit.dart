@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/core.dart';
 import '../../../../core/services/geolocation/city_detail.dart';
 import '../../domain/usecases/get_location_data.dart';
 
@@ -18,7 +19,7 @@ class PrayerCubit extends Cubit<PrayerState> {
     final result =
         await getLocationData(); // Nilai sudah pasti diinisialisasi di sini
     result.fold(
-      (error) => emit(const PrayerState.error()),
+      (error) => emit(PrayerState.error(error: error)),
       (result) => emit(PrayerState.success(cityDetail: result)),
     );
   }

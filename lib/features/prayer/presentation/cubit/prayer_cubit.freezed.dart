@@ -21,7 +21,7 @@ mixin _$PrayerState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(CityDetail cityDetail) success,
-    required TResult Function() error,
+    required TResult Function(AppException error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,7 +29,7 @@ mixin _$PrayerState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(CityDetail cityDetail)? success,
-    TResult? Function()? error,
+    TResult? Function(AppException error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$PrayerState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(CityDetail cityDetail)? success,
-    TResult Function()? error,
+    TResult Function(AppException error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,7 +133,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(CityDetail cityDetail) success,
-    required TResult Function() error,
+    required TResult Function(AppException error) error,
   }) {
     return initial();
   }
@@ -144,7 +144,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(CityDetail cityDetail)? success,
-    TResult? Function()? error,
+    TResult? Function(AppException error)? error,
   }) {
     return initial?.call();
   }
@@ -155,7 +155,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(CityDetail cityDetail)? success,
-    TResult Function()? error,
+    TResult Function(AppException error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -250,7 +250,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(CityDetail cityDetail) success,
-    required TResult Function() error,
+    required TResult Function(AppException error) error,
   }) {
     return loading();
   }
@@ -261,7 +261,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(CityDetail cityDetail)? success,
-    TResult? Function()? error,
+    TResult? Function(AppException error)? error,
   }) {
     return loading?.call();
   }
@@ -272,7 +272,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(CityDetail cityDetail)? success,
-    TResult Function()? error,
+    TResult Function(AppException error)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -407,7 +407,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(CityDetail cityDetail) success,
-    required TResult Function() error,
+    required TResult Function(AppException error) error,
   }) {
     return success(cityDetail);
   }
@@ -418,7 +418,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(CityDetail cityDetail)? success,
-    TResult? Function()? error,
+    TResult? Function(AppException error)? error,
   }) {
     return success?.call(cityDetail);
   }
@@ -429,7 +429,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(CityDetail cityDetail)? success,
-    TResult Function()? error,
+    TResult Function(AppException error)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -494,6 +494,8 @@ abstract class _$$ErrorImplCopyWith<$Res> {
   factory _$$ErrorImplCopyWith(
           _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
       __$$ErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AppException error});
 }
 
 /// @nodoc
@@ -506,26 +508,52 @@ class __$$ErrorImplCopyWithImpl<$Res>
 
   /// Create a copy of PrayerState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? error = freezed,
+  }) {
+    return _then(_$ErrorImpl(
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as AppException,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ErrorImpl implements _Error {
-  const _$ErrorImpl();
+  const _$ErrorImpl({required this.error});
+
+  @override
+  final AppException error;
 
   @override
   String toString() {
-    return 'PrayerState.error()';
+    return 'PrayerState.error(error: $error)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ErrorImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ErrorImpl &&
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+
+  /// Create a copy of PrayerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -533,9 +561,9 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(CityDetail cityDetail) success,
-    required TResult Function() error,
+    required TResult Function(AppException error) error,
   }) {
-    return error();
+    return error(this.error);
   }
 
   @override
@@ -544,9 +572,9 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(CityDetail cityDetail)? success,
-    TResult? Function()? error,
+    TResult? Function(AppException error)? error,
   }) {
-    return error?.call();
+    return error?.call(this.error);
   }
 
   @override
@@ -555,11 +583,11 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(CityDetail cityDetail)? success,
-    TResult Function()? error,
+    TResult Function(AppException error)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(this.error);
     }
     return orElse();
   }
@@ -603,5 +631,13 @@ class _$ErrorImpl implements _Error {
 }
 
 abstract class _Error implements PrayerState {
-  const factory _Error() = _$ErrorImpl;
+  const factory _Error({required final AppException error}) = _$ErrorImpl;
+
+  AppException get error;
+
+  /// Create a copy of PrayerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

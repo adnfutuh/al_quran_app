@@ -1,7 +1,10 @@
 import 'package:al_quran_app/core/di/injector.dart';
-import 'package:al_quran_app/core/routes/routes_config.dart';
+import 'package:al_quran_app/core/routes/router_config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'presentation/cubit/bottomnav_cubit.dart';
 
 void main() async {
   await ScreenUtil.ensureScreenSize();
@@ -16,9 +19,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        routerConfig: RoutesConfig.appRouter,
+      child: BlocProvider(
+        create: (context) => BottomNavCubit(),
+        child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          routerConfig: RoutesConfig.appRouter,
+        ),
       ),
     );
   }

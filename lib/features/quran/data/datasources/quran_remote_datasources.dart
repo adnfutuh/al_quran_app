@@ -16,6 +16,9 @@ class QuranRemoteDatasourceImpl implements QuranRemoteDatasource {
     try {
       final response = await httpClientService.get(
           path: 'https://quran-api.santrikoding.com/api/surah/$id');
+      print('Respons dari API: ${response.data}'); // Log respons
+
+      // Pastikan response.data sesuai dengan model
       return SurahModel.fromJson(response.data);
     } catch (e) {
       throw ServerException(error: e.toString(), message: e.toString());
