@@ -1,9 +1,7 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-
 import '../../cubit/prayer_cubit.dart';
 
 class PrayerTimeWidget extends StatefulWidget {
@@ -26,26 +24,24 @@ class _PrayerTimeWidgetState extends State<PrayerTimeWidget> {
       value: GetIt.I<PrayerCubit>(),
       child: Column(
         children: [
-          const Text(
-            'Dzuhur 11.57',
+          const Text('Dzuhur 11.57'),
+          const Text('10 menit lagi'),
+          BlocBuilder<PrayerCubit, PrayerState>(
+            builder: (context, state) {
+              log(state.runtimeType.toString());
+              return state.maybeWhen(
+                success: (cityDetail) {
+                  return Text('Lokasi: ${cityDetail.locality}');
+                },
+                error: (error) {
+                  return Text('Error: ${error.message}');
+                },
+                orElse: () {
+                  return const Text("Loading...");
+                },
+              );
+            },
           ),
-          const Text(
-            '10 menit lagi',
-          ),
-          BlocBuilder<PrayerCubit, PrayerState>(builder: (context, state) {
-            log(state.runtimeType.toString());
-            log(state.toString());
-            return state.maybeWhen(
-              success: (cityDetail) {
-                return Text(
-                  'Lokasi: ${cityDetail.locality}',
-                );
-              },
-              orElse: () {
-                return const Text("kosong");
-              },
-            );
-          }),
         ],
       ),
     );
