@@ -20,22 +20,22 @@ NextAyatModel _$NextAyatModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NextAyatModel {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'nomor')
-  int get number => throw _privateConstructorUsedError;
+  int? get number => throw _privateConstructorUsedError;
   @JsonKey(name: 'nama')
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'nama_latin')
-  String get latinName => throw _privateConstructorUsedError;
+  String? get latinName => throw _privateConstructorUsedError;
   @JsonKey(name: 'jumlah_ayat')
-  int get verseCount => throw _privateConstructorUsedError;
+  int? get verseCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'tempat_turun')
-  String get placeOfDescent => throw _privateConstructorUsedError;
+  String? get placeOfDescent => throw _privateConstructorUsedError;
   @JsonKey(name: 'arti')
-  String get meaning => throw _privateConstructorUsedError;
+  String? get meaning => throw _privateConstructorUsedError;
   @JsonKey(name: 'deskripsi')
-  String get description => throw _privateConstructorUsedError;
-  String get audio => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  String? get audio => throw _privateConstructorUsedError;
 
   /// Serializes this NextAyatModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,15 +54,15 @@ abstract class $NextAyatModelCopyWith<$Res> {
       _$NextAyatModelCopyWithImpl<$Res, NextAyatModel>;
   @useResult
   $Res call(
-      {int id,
-      @JsonKey(name: 'nomor') int number,
-      @JsonKey(name: 'nama') String name,
-      @JsonKey(name: 'nama_latin') String latinName,
-      @JsonKey(name: 'jumlah_ayat') int verseCount,
-      @JsonKey(name: 'tempat_turun') String placeOfDescent,
-      @JsonKey(name: 'arti') String meaning,
-      @JsonKey(name: 'deskripsi') String description,
-      String audio});
+      {int? id,
+      @JsonKey(name: 'nomor') int? number,
+      @JsonKey(name: 'nama') String? name,
+      @JsonKey(name: 'nama_latin') String? latinName,
+      @JsonKey(name: 'jumlah_ayat') int? verseCount,
+      @JsonKey(name: 'tempat_turun') String? placeOfDescent,
+      @JsonKey(name: 'arti') String? meaning,
+      @JsonKey(name: 'deskripsi') String? description,
+      String? audio});
 }
 
 /// @nodoc
@@ -80,53 +80,53 @@ class _$NextAyatModelCopyWithImpl<$Res, $Val extends NextAyatModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? number = null,
-    Object? name = null,
-    Object? latinName = null,
-    Object? verseCount = null,
-    Object? placeOfDescent = null,
-    Object? meaning = null,
-    Object? description = null,
-    Object? audio = null,
+    Object? id = freezed,
+    Object? number = freezed,
+    Object? name = freezed,
+    Object? latinName = freezed,
+    Object? verseCount = freezed,
+    Object? placeOfDescent = freezed,
+    Object? meaning = freezed,
+    Object? description = freezed,
+    Object? audio = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      number: null == number
+              as int?,
+      number: freezed == number
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
+              as int?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      latinName: null == latinName
+              as String?,
+      latinName: freezed == latinName
           ? _value.latinName
           : latinName // ignore: cast_nullable_to_non_nullable
-              as String,
-      verseCount: null == verseCount
+              as String?,
+      verseCount: freezed == verseCount
           ? _value.verseCount
           : verseCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      placeOfDescent: null == placeOfDescent
+              as int?,
+      placeOfDescent: freezed == placeOfDescent
           ? _value.placeOfDescent
           : placeOfDescent // ignore: cast_nullable_to_non_nullable
-              as String,
-      meaning: null == meaning
+              as String?,
+      meaning: freezed == meaning
           ? _value.meaning
           : meaning // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
+              as String?,
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      audio: null == audio
+              as String?,
+      audio: freezed == audio
           ? _value.audio
           : audio // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -140,15 +140,15 @@ abstract class _$$NextAyatModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      @JsonKey(name: 'nomor') int number,
-      @JsonKey(name: 'nama') String name,
-      @JsonKey(name: 'nama_latin') String latinName,
-      @JsonKey(name: 'jumlah_ayat') int verseCount,
-      @JsonKey(name: 'tempat_turun') String placeOfDescent,
-      @JsonKey(name: 'arti') String meaning,
-      @JsonKey(name: 'deskripsi') String description,
-      String audio});
+      {int? id,
+      @JsonKey(name: 'nomor') int? number,
+      @JsonKey(name: 'nama') String? name,
+      @JsonKey(name: 'nama_latin') String? latinName,
+      @JsonKey(name: 'jumlah_ayat') int? verseCount,
+      @JsonKey(name: 'tempat_turun') String? placeOfDescent,
+      @JsonKey(name: 'arti') String? meaning,
+      @JsonKey(name: 'deskripsi') String? description,
+      String? audio});
 }
 
 /// @nodoc
@@ -164,53 +164,53 @@ class __$$NextAyatModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? number = null,
-    Object? name = null,
-    Object? latinName = null,
-    Object? verseCount = null,
-    Object? placeOfDescent = null,
-    Object? meaning = null,
-    Object? description = null,
-    Object? audio = null,
+    Object? id = freezed,
+    Object? number = freezed,
+    Object? name = freezed,
+    Object? latinName = freezed,
+    Object? verseCount = freezed,
+    Object? placeOfDescent = freezed,
+    Object? meaning = freezed,
+    Object? description = freezed,
+    Object? audio = freezed,
   }) {
     return _then(_$NextAyatModelImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      number: null == number
+              as int?,
+      number: freezed == number
           ? _value.number
           : number // ignore: cast_nullable_to_non_nullable
-              as int,
-      name: null == name
+              as int?,
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      latinName: null == latinName
+              as String?,
+      latinName: freezed == latinName
           ? _value.latinName
           : latinName // ignore: cast_nullable_to_non_nullable
-              as String,
-      verseCount: null == verseCount
+              as String?,
+      verseCount: freezed == verseCount
           ? _value.verseCount
           : verseCount // ignore: cast_nullable_to_non_nullable
-              as int,
-      placeOfDescent: null == placeOfDescent
+              as int?,
+      placeOfDescent: freezed == placeOfDescent
           ? _value.placeOfDescent
           : placeOfDescent // ignore: cast_nullable_to_non_nullable
-              as String,
-      meaning: null == meaning
+              as String?,
+      meaning: freezed == meaning
           ? _value.meaning
           : meaning // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
+              as String?,
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      audio: null == audio
+              as String?,
+      audio: freezed == audio
           ? _value.audio
           : audio // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -220,44 +220,44 @@ class __$$NextAyatModelImplCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$NextAyatModelImpl implements _NextAyatModel {
   const _$NextAyatModelImpl(
-      {required this.id,
-      @JsonKey(name: 'nomor') required this.number,
-      @JsonKey(name: 'nama') required this.name,
-      @JsonKey(name: 'nama_latin') required this.latinName,
-      @JsonKey(name: 'jumlah_ayat') required this.verseCount,
-      @JsonKey(name: 'tempat_turun') required this.placeOfDescent,
-      @JsonKey(name: 'arti') required this.meaning,
-      @JsonKey(name: 'deskripsi') required this.description,
-      required this.audio});
+      {this.id,
+      @JsonKey(name: 'nomor') this.number,
+      @JsonKey(name: 'nama') this.name,
+      @JsonKey(name: 'nama_latin') this.latinName,
+      @JsonKey(name: 'jumlah_ayat') this.verseCount,
+      @JsonKey(name: 'tempat_turun') this.placeOfDescent,
+      @JsonKey(name: 'arti') this.meaning,
+      @JsonKey(name: 'deskripsi') this.description,
+      this.audio});
 
   factory _$NextAyatModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$NextAyatModelImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   @JsonKey(name: 'nomor')
-  final int number;
+  final int? number;
   @override
   @JsonKey(name: 'nama')
-  final String name;
+  final String? name;
   @override
   @JsonKey(name: 'nama_latin')
-  final String latinName;
+  final String? latinName;
   @override
   @JsonKey(name: 'jumlah_ayat')
-  final int verseCount;
+  final int? verseCount;
   @override
   @JsonKey(name: 'tempat_turun')
-  final String placeOfDescent;
+  final String? placeOfDescent;
   @override
   @JsonKey(name: 'arti')
-  final String meaning;
+  final String? meaning;
   @override
   @JsonKey(name: 'deskripsi')
-  final String description;
+  final String? description;
   @override
-  final String audio;
+  final String? audio;
 
   @override
   String toString() {
@@ -307,44 +307,44 @@ class _$NextAyatModelImpl implements _NextAyatModel {
 
 abstract class _NextAyatModel implements NextAyatModel {
   const factory _NextAyatModel(
-      {required final int id,
-      @JsonKey(name: 'nomor') required final int number,
-      @JsonKey(name: 'nama') required final String name,
-      @JsonKey(name: 'nama_latin') required final String latinName,
-      @JsonKey(name: 'jumlah_ayat') required final int verseCount,
-      @JsonKey(name: 'tempat_turun') required final String placeOfDescent,
-      @JsonKey(name: 'arti') required final String meaning,
-      @JsonKey(name: 'deskripsi') required final String description,
-      required final String audio}) = _$NextAyatModelImpl;
+      {final int? id,
+      @JsonKey(name: 'nomor') final int? number,
+      @JsonKey(name: 'nama') final String? name,
+      @JsonKey(name: 'nama_latin') final String? latinName,
+      @JsonKey(name: 'jumlah_ayat') final int? verseCount,
+      @JsonKey(name: 'tempat_turun') final String? placeOfDescent,
+      @JsonKey(name: 'arti') final String? meaning,
+      @JsonKey(name: 'deskripsi') final String? description,
+      final String? audio}) = _$NextAyatModelImpl;
 
   factory _NextAyatModel.fromJson(Map<String, dynamic> json) =
       _$NextAyatModelImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
   @JsonKey(name: 'nomor')
-  int get number;
+  int? get number;
   @override
   @JsonKey(name: 'nama')
-  String get name;
+  String? get name;
   @override
   @JsonKey(name: 'nama_latin')
-  String get latinName;
+  String? get latinName;
   @override
   @JsonKey(name: 'jumlah_ayat')
-  int get verseCount;
+  int? get verseCount;
   @override
   @JsonKey(name: 'tempat_turun')
-  String get placeOfDescent;
+  String? get placeOfDescent;
   @override
   @JsonKey(name: 'arti')
-  String get meaning;
+  String? get meaning;
   @override
   @JsonKey(name: 'deskripsi')
-  String get description;
+  String? get description;
   @override
-  String get audio;
+  String? get audio;
 
   /// Create a copy of NextAyatModel
   /// with the given fields replaced by the non-null parameter values.

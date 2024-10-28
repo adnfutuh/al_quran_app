@@ -23,15 +23,14 @@ mixin _$SurahModel {
   bool get status => throw _privateConstructorUsedError;
   int get nomor => throw _privateConstructorUsedError;
   String get nama => throw _privateConstructorUsedError;
-  int get jumlahAyat => throw _privateConstructorUsedError;
   String get namaLatin => throw _privateConstructorUsedError;
-  String get arti => throw _privateConstructorUsedError;
+  int get jumlahAyat => throw _privateConstructorUsedError;
   String get tempatTurun => throw _privateConstructorUsedError;
+  String get arti => throw _privateConstructorUsedError;
   String get deskripsi => throw _privateConstructorUsedError;
   String get audio => throw _privateConstructorUsedError;
   List<AyatModel> get ayat => throw _privateConstructorUsedError;
-  @JsonKey(name: 'surat_selanjutnya')
-  NextAyatModel get nextAyatModel => throw _privateConstructorUsedError;
+  dynamic get nextAyatModel => throw _privateConstructorUsedError;
   dynamic get suratSebelumnya => throw _privateConstructorUsedError;
 
   /// Serializes this SurahModel to a JSON map.
@@ -54,17 +53,15 @@ abstract class $SurahModelCopyWith<$Res> {
       {bool status,
       int nomor,
       String nama,
-      int jumlahAyat,
       String namaLatin,
-      String arti,
+      int jumlahAyat,
       String tempatTurun,
+      String arti,
       String deskripsi,
       String audio,
       List<AyatModel> ayat,
-      @JsonKey(name: 'surat_selanjutnya') NextAyatModel nextAyatModel,
+      dynamic nextAyatModel,
       dynamic suratSebelumnya});
-
-  $NextAyatModelCopyWith<$Res> get nextAyatModel;
 }
 
 /// @nodoc
@@ -85,14 +82,14 @@ class _$SurahModelCopyWithImpl<$Res, $Val extends SurahModel>
     Object? status = null,
     Object? nomor = null,
     Object? nama = null,
-    Object? jumlahAyat = null,
     Object? namaLatin = null,
-    Object? arti = null,
+    Object? jumlahAyat = null,
     Object? tempatTurun = null,
+    Object? arti = null,
     Object? deskripsi = null,
     Object? audio = null,
     Object? ayat = null,
-    Object? nextAyatModel = null,
+    Object? nextAyatModel = freezed,
     Object? suratSebelumnya = freezed,
   }) {
     return _then(_value.copyWith(
@@ -108,21 +105,21 @@ class _$SurahModelCopyWithImpl<$Res, $Val extends SurahModel>
           ? _value.nama
           : nama // ignore: cast_nullable_to_non_nullable
               as String,
-      jumlahAyat: null == jumlahAyat
-          ? _value.jumlahAyat
-          : jumlahAyat // ignore: cast_nullable_to_non_nullable
-              as int,
       namaLatin: null == namaLatin
           ? _value.namaLatin
           : namaLatin // ignore: cast_nullable_to_non_nullable
               as String,
-      arti: null == arti
-          ? _value.arti
-          : arti // ignore: cast_nullable_to_non_nullable
-              as String,
+      jumlahAyat: null == jumlahAyat
+          ? _value.jumlahAyat
+          : jumlahAyat // ignore: cast_nullable_to_non_nullable
+              as int,
       tempatTurun: null == tempatTurun
           ? _value.tempatTurun
           : tempatTurun // ignore: cast_nullable_to_non_nullable
+              as String,
+      arti: null == arti
+          ? _value.arti
+          : arti // ignore: cast_nullable_to_non_nullable
               as String,
       deskripsi: null == deskripsi
           ? _value.deskripsi
@@ -136,25 +133,15 @@ class _$SurahModelCopyWithImpl<$Res, $Val extends SurahModel>
           ? _value.ayat
           : ayat // ignore: cast_nullable_to_non_nullable
               as List<AyatModel>,
-      nextAyatModel: null == nextAyatModel
+      nextAyatModel: freezed == nextAyatModel
           ? _value.nextAyatModel
           : nextAyatModel // ignore: cast_nullable_to_non_nullable
-              as NextAyatModel,
+              as dynamic,
       suratSebelumnya: freezed == suratSebelumnya
           ? _value.suratSebelumnya
           : suratSebelumnya // ignore: cast_nullable_to_non_nullable
               as dynamic,
     ) as $Val);
-  }
-
-  /// Create a copy of SurahModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $NextAyatModelCopyWith<$Res> get nextAyatModel {
-    return $NextAyatModelCopyWith<$Res>(_value.nextAyatModel, (value) {
-      return _then(_value.copyWith(nextAyatModel: value) as $Val);
-    });
   }
 }
 
@@ -170,18 +157,15 @@ abstract class _$$SurahModelImplCopyWith<$Res>
       {bool status,
       int nomor,
       String nama,
-      int jumlahAyat,
       String namaLatin,
-      String arti,
+      int jumlahAyat,
       String tempatTurun,
+      String arti,
       String deskripsi,
       String audio,
       List<AyatModel> ayat,
-      @JsonKey(name: 'surat_selanjutnya') NextAyatModel nextAyatModel,
+      dynamic nextAyatModel,
       dynamic suratSebelumnya});
-
-  @override
-  $NextAyatModelCopyWith<$Res> get nextAyatModel;
 }
 
 /// @nodoc
@@ -200,14 +184,14 @@ class __$$SurahModelImplCopyWithImpl<$Res>
     Object? status = null,
     Object? nomor = null,
     Object? nama = null,
-    Object? jumlahAyat = null,
     Object? namaLatin = null,
-    Object? arti = null,
+    Object? jumlahAyat = null,
     Object? tempatTurun = null,
+    Object? arti = null,
     Object? deskripsi = null,
     Object? audio = null,
     Object? ayat = null,
-    Object? nextAyatModel = null,
+    Object? nextAyatModel = freezed,
     Object? suratSebelumnya = freezed,
   }) {
     return _then(_$SurahModelImpl(
@@ -223,21 +207,21 @@ class __$$SurahModelImplCopyWithImpl<$Res>
           ? _value.nama
           : nama // ignore: cast_nullable_to_non_nullable
               as String,
-      jumlahAyat: null == jumlahAyat
-          ? _value.jumlahAyat
-          : jumlahAyat // ignore: cast_nullable_to_non_nullable
-              as int,
       namaLatin: null == namaLatin
           ? _value.namaLatin
           : namaLatin // ignore: cast_nullable_to_non_nullable
               as String,
-      arti: null == arti
-          ? _value.arti
-          : arti // ignore: cast_nullable_to_non_nullable
-              as String,
+      jumlahAyat: null == jumlahAyat
+          ? _value.jumlahAyat
+          : jumlahAyat // ignore: cast_nullable_to_non_nullable
+              as int,
       tempatTurun: null == tempatTurun
           ? _value.tempatTurun
           : tempatTurun // ignore: cast_nullable_to_non_nullable
+              as String,
+      arti: null == arti
+          ? _value.arti
+          : arti // ignore: cast_nullable_to_non_nullable
               as String,
       deskripsi: null == deskripsi
           ? _value.deskripsi
@@ -251,10 +235,10 @@ class __$$SurahModelImplCopyWithImpl<$Res>
           ? _value._ayat
           : ayat // ignore: cast_nullable_to_non_nullable
               as List<AyatModel>,
-      nextAyatModel: null == nextAyatModel
+      nextAyatModel: freezed == nextAyatModel
           ? _value.nextAyatModel
           : nextAyatModel // ignore: cast_nullable_to_non_nullable
-              as NextAyatModel,
+              as dynamic,
       suratSebelumnya: freezed == suratSebelumnya
           ? _value.suratSebelumnya
           : suratSebelumnya // ignore: cast_nullable_to_non_nullable
@@ -271,14 +255,14 @@ class _$SurahModelImpl implements _SurahModel {
       {required this.status,
       required this.nomor,
       required this.nama,
-      required this.jumlahAyat,
       required this.namaLatin,
-      required this.arti,
+      required this.jumlahAyat,
       required this.tempatTurun,
+      required this.arti,
       required this.deskripsi,
       required this.audio,
       required final List<AyatModel> ayat,
-      @JsonKey(name: 'surat_selanjutnya') required this.nextAyatModel,
+      required this.nextAyatModel,
       required this.suratSebelumnya})
       : _ayat = ayat;
 
@@ -292,13 +276,13 @@ class _$SurahModelImpl implements _SurahModel {
   @override
   final String nama;
   @override
-  final int jumlahAyat;
-  @override
   final String namaLatin;
   @override
-  final String arti;
+  final int jumlahAyat;
   @override
   final String tempatTurun;
+  @override
+  final String arti;
   @override
   final String deskripsi;
   @override
@@ -312,14 +296,13 @@ class _$SurahModelImpl implements _SurahModel {
   }
 
   @override
-  @JsonKey(name: 'surat_selanjutnya')
-  final NextAyatModel nextAyatModel;
+  final dynamic nextAyatModel;
   @override
   final dynamic suratSebelumnya;
 
   @override
   String toString() {
-    return 'SurahModel(status: $status, nomor: $nomor, nama: $nama, jumlahAyat: $jumlahAyat, namaLatin: $namaLatin, arti: $arti, tempatTurun: $tempatTurun, deskripsi: $deskripsi, audio: $audio, ayat: $ayat, nextAyatModel: $nextAyatModel, suratSebelumnya: $suratSebelumnya)';
+    return 'SurahModel(status: $status, nomor: $nomor, nama: $nama, namaLatin: $namaLatin, jumlahAyat: $jumlahAyat, tempatTurun: $tempatTurun, arti: $arti, deskripsi: $deskripsi, audio: $audio, ayat: $ayat, nextAyatModel: $nextAyatModel, suratSebelumnya: $suratSebelumnya)';
   }
 
   @override
@@ -330,19 +313,19 @@ class _$SurahModelImpl implements _SurahModel {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.nomor, nomor) || other.nomor == nomor) &&
             (identical(other.nama, nama) || other.nama == nama) &&
-            (identical(other.jumlahAyat, jumlahAyat) ||
-                other.jumlahAyat == jumlahAyat) &&
             (identical(other.namaLatin, namaLatin) ||
                 other.namaLatin == namaLatin) &&
-            (identical(other.arti, arti) || other.arti == arti) &&
+            (identical(other.jumlahAyat, jumlahAyat) ||
+                other.jumlahAyat == jumlahAyat) &&
             (identical(other.tempatTurun, tempatTurun) ||
                 other.tempatTurun == tempatTurun) &&
+            (identical(other.arti, arti) || other.arti == arti) &&
             (identical(other.deskripsi, deskripsi) ||
                 other.deskripsi == deskripsi) &&
             (identical(other.audio, audio) || other.audio == audio) &&
             const DeepCollectionEquality().equals(other._ayat, _ayat) &&
-            (identical(other.nextAyatModel, nextAyatModel) ||
-                other.nextAyatModel == nextAyatModel) &&
+            const DeepCollectionEquality()
+                .equals(other.nextAyatModel, nextAyatModel) &&
             const DeepCollectionEquality()
                 .equals(other.suratSebelumnya, suratSebelumnya));
   }
@@ -354,14 +337,14 @@ class _$SurahModelImpl implements _SurahModel {
       status,
       nomor,
       nama,
-      jumlahAyat,
       namaLatin,
-      arti,
+      jumlahAyat,
       tempatTurun,
+      arti,
       deskripsi,
       audio,
       const DeepCollectionEquality().hash(_ayat),
-      nextAyatModel,
+      const DeepCollectionEquality().hash(nextAyatModel),
       const DeepCollectionEquality().hash(suratSebelumnya));
 
   /// Create a copy of SurahModel
@@ -385,15 +368,14 @@ abstract class _SurahModel implements SurahModel {
       {required final bool status,
       required final int nomor,
       required final String nama,
-      required final int jumlahAyat,
       required final String namaLatin,
-      required final String arti,
+      required final int jumlahAyat,
       required final String tempatTurun,
+      required final String arti,
       required final String deskripsi,
       required final String audio,
       required final List<AyatModel> ayat,
-      @JsonKey(name: 'surat_selanjutnya')
-      required final NextAyatModel nextAyatModel,
+      required final dynamic nextAyatModel,
       required final dynamic suratSebelumnya}) = _$SurahModelImpl;
 
   factory _SurahModel.fromJson(Map<String, dynamic> json) =
@@ -406,13 +388,13 @@ abstract class _SurahModel implements SurahModel {
   @override
   String get nama;
   @override
-  int get jumlahAyat;
-  @override
   String get namaLatin;
   @override
-  String get arti;
+  int get jumlahAyat;
   @override
   String get tempatTurun;
+  @override
+  String get arti;
   @override
   String get deskripsi;
   @override
@@ -420,8 +402,7 @@ abstract class _SurahModel implements SurahModel {
   @override
   List<AyatModel> get ayat;
   @override
-  @JsonKey(name: 'surat_selanjutnya')
-  NextAyatModel get nextAyatModel;
+  dynamic get nextAyatModel;
   @override
   dynamic get suratSebelumnya;
 

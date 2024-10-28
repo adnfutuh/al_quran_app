@@ -8,15 +8,15 @@ part of 'next_ayat_model.dart';
 
 _$NextAyatModelImpl _$$NextAyatModelImplFromJson(Map<String, dynamic> json) =>
     _$NextAyatModelImpl(
-      id: (json['id'] as num).toInt(),
-      number: (json['nomor'] as num).toInt(),
-      name: json['nama'] as String,
-      latinName: json['nama_latin'] as String,
-      verseCount: (json['jumlah_ayat'] as num).toInt(),
-      placeOfDescent: json['tempat_turun'] as String,
-      meaning: json['arti'] as String,
-      description: json['deskripsi'] as String,
-      audio: json['audio'] as String,
+      id: (json['id'] as num?)?.toInt(),
+      number: (json['nomor'] as num?)?.toInt(),
+      name: json['nama'] as String?,
+      latinName: json['nama_latin'] as String?,
+      verseCount: (json['jumlah_ayat'] as num?)?.toInt(),
+      placeOfDescent: json['tempat_turun'] as String?,
+      meaning: json['arti'] as String?,
+      description: json['deskripsi'] as String?,
+      audio: json['audio'] as String?,
     );
 
 Map<String, dynamic> _$$NextAyatModelImplToJson(_$NextAyatModelImpl instance) =>

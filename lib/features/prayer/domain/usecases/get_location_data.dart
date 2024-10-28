@@ -13,10 +13,11 @@ class GetLocationData {
     try {
       final currentPosition = await geoService.getCurrentPosition();
       final result = await geoService.getCityDetails(currentPosition);
-
       return Right(result);
     } on AppException catch (ex) {
       return Left(ex);
+    } catch (e) {
+      return Left(DefaultAppException(message: e.toString()));
     }
   }
 }

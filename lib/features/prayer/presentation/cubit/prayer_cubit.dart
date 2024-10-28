@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../../../core/core.dart';
 import '../../../../core/services/geolocation/city_detail.dart';
 import '../../domain/usecases/get_location_data.dart';
@@ -11,19 +10,26 @@ part 'prayer_cubit.freezed.dart';
 
 @singleton
 class PrayerCubit extends Cubit<PrayerState> {
-  late GetLocationData getLocationData; // Dinyatakan dengan late
+  final GetLocationData getLocationData;
+
   PrayerCubit({required this.getLocationData})
-      : super(const PrayerState.initial()); // Diberikan nilai di konstruktor
+      : super(const PrayerState.initial());
+
   void getLocation() async {
     emit(const PrayerState.loading());
-    final result =
-        await getLocationData(); // Nilai sudah pasti diinisialisasi di sini
-    result.fold(
-      (error) => emit(PrayerState.error(error: error)),
-      (result) => emit(PrayerState.success(cityDetail: result)),
-    );
+    try {
+      final result = await getLocationData();
+      result.fold(
+        (error) => emit(PrayerState.error(error: error)),
+        (cityDetail) => emit(PrayerState.success(cityDetail: cityDetail)),
+      );
+    } catch (e) {
+      emit(
+          PrayerState.error(error: DefaultAppException(message: e.toString())));
+    }
   }
 }
+
 //@singleton: Ini berarti objek akan dibuat sekali dan digunakan di seluruh aplikasi.
 
 //@lazySingleton  Ini berarti objek tidak akan dibuat sampai benar-benar diperlukan, membantu menghemat sumber daya saat aplikasi pertama kali dijalankan.

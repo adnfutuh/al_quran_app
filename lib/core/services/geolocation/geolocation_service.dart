@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:al_quran_app/core/core.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
-
 import 'city_detail.dart';
 
 @LazySingleton(as: GeolocationService)
@@ -24,8 +22,9 @@ class GeolocationServiceImpl implements GeolocationService {
       throw DefaultAppException(
         message: 'TimeoutException: ${e.message}',
       );
-    } catch (_) {
-      throw const DefaultAppException();
+    } catch (e) {
+      throw DefaultAppException(
+          message: 'Error retrieving location: ${e.toString()}');
     }
   }
 
@@ -37,25 +36,35 @@ class GeolocationServiceImpl implements GeolocationService {
         position.longitude,
       );
 
-      // Memastikan ada placemarks
       if (placemarks.isEmpty) {
         throw const DefaultAppException(message: 'No placemarks found');
       }
 
-      // Ambil placemark pertama
+      for (var placemark in placemarks) {
+        print(
+            'Placemark: ${placemark.toJson()}'); // Menampilkan semua data placemark
+      }
+
       final Placemark place = placemarks[0];
+      final String subAdministrativeArea =
+          place.subAdministrativeArea ?? "Unknown Area";
+      final String locality = place.locality ?? "Unknown Location";
+
+      if (locality.isEmpty) {
+        throw const DefaultAppException(message: 'Locality is empty');
+      }
 
       return CityDetail(
-        subAdministrativeArea: place.subAdministrativeArea ?? "-",
-        locality: place.locality ?? "-",
+        subAdministrativeArea: subAdministrativeArea,
+        locality: locality,
       );
     } on TimeoutException catch (e) {
       throw DefaultAppException(
         message: 'TimeoutException: ${e.message}',
       );
     } catch (e) {
-      // Menangkap semua kesalahan lain yang tidak ditangani sebelumnya
-      throw DefaultAppException(message: e.toString());
+      throw DefaultAppException(
+          message: 'Error retrieving city details: ${e.toString()}');
     }
   }
 }
