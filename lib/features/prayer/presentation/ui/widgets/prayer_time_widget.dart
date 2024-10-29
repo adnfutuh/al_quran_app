@@ -14,8 +14,9 @@ class PrayerTimeWidget extends StatefulWidget {
 class _PrayerTimeWidgetState extends State<PrayerTimeWidget> {
   @override
   void initState() {
-    GetIt.I<PrayerCubit>().getLocation();
     super.initState();
+    // Memanggil fungsi untuk mendapatkan waktu sholat berdasarkan lokasi
+    GetIt.I<PrayerCubit>().getPrayerTimeBasedOnLocation();
   }
 
   @override
@@ -24,14 +25,16 @@ class _PrayerTimeWidgetState extends State<PrayerTimeWidget> {
       value: GetIt.I<PrayerCubit>(),
       child: Column(
         children: [
-          const Text('Dzuhur 11.57'),
-          const Text('10 menit lagi'),
           BlocBuilder<PrayerCubit, PrayerState>(
             builder: (context, state) {
               log(state.runtimeType.toString());
               return state.maybeWhen(
-                success: (cityDetail) {
-                  return Text('Lokasi: ${cityDetail.locality}');
+                success: (prayerTime) {
+                  return Column(
+                    children: [
+                      Text('Dzuhur: ${prayerTime.dhuhr}'),
+                    ],
+                  );
                 },
                 error: (error) {
                   return Text('Error: ${error.message}');

@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/core.dart';
 import '../../../../core/services/geolocation/city_detail.dart';
+import '../../data/models/prayer_time_model.dart';
 import '../../domain/usecases/get_location_data.dart';
 
 part 'prayer_state.dart';
@@ -10,18 +11,21 @@ part 'prayer_cubit.freezed.dart';
 
 @singleton
 class PrayerCubit extends Cubit<PrayerState> {
-  final GetLocationData getLocationData;
+  final GetPrayerTimeBasedOnLocation getPrayerTimeBasedOnLocation;
 
-  PrayerCubit({required this.getLocationData})
-      : super(const PrayerState.initial());
+  PrayerCubit({
+    required this.getPrayerTimeBasedOnLocation,
+  }) : super(const PrayerState.initial());
 
-  void getLocation() async {
+  void fetchPrayerTime(CityDetail cityDetail) async {
     emit(const PrayerState.loading());
     try {
-      final result = await getLocationData();
-      result.fold(
+      final prayerTimeResult = await getPrayerTimeBasedOnLocation();
+      prayerTimeResult.fold(
         (error) => emit(PrayerState.error(error: error)),
-        (cityDetail) => emit(PrayerState.success(cityDetail: cityDetail)),
+        (prayerTime) => emit(
+          PrayerState.success(prayerTime: prayerTime),
+        ),
       );
     } catch (e) {
       emit(
@@ -29,6 +33,9 @@ class PrayerCubit extends Cubit<PrayerState> {
     }
   }
 }
+
+
+
 
 //@singleton: Ini berarti objek akan dibuat sekali dan digunakan di seluruh aplikasi.
 

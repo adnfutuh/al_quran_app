@@ -20,7 +20,7 @@ mixin _$PrayerState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CityDetail cityDetail) success,
+    required TResult Function(PrayerTimeModel prayerTime) success,
     required TResult Function(AppException error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$PrayerState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CityDetail cityDetail)? success,
+    TResult? Function(PrayerTimeModel prayerTime)? success,
     TResult? Function(AppException error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$PrayerState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CityDetail cityDetail)? success,
+    TResult Function(PrayerTimeModel prayerTime)? success,
     TResult Function(AppException error)? error,
     required TResult orElse(),
   }) =>
@@ -132,7 +132,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CityDetail cityDetail) success,
+    required TResult Function(PrayerTimeModel prayerTime) success,
     required TResult Function(AppException error) error,
   }) {
     return initial();
@@ -143,7 +143,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CityDetail cityDetail)? success,
+    TResult? Function(PrayerTimeModel prayerTime)? success,
     TResult? Function(AppException error)? error,
   }) {
     return initial?.call();
@@ -154,7 +154,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CityDetail cityDetail)? success,
+    TResult Function(PrayerTimeModel prayerTime)? success,
     TResult Function(AppException error)? error,
     required TResult orElse(),
   }) {
@@ -249,7 +249,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CityDetail cityDetail) success,
+    required TResult Function(PrayerTimeModel prayerTime) success,
     required TResult Function(AppException error) error,
   }) {
     return loading();
@@ -260,7 +260,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CityDetail cityDetail)? success,
+    TResult? Function(PrayerTimeModel prayerTime)? success,
     TResult? Function(AppException error)? error,
   }) {
     return loading?.call();
@@ -271,7 +271,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CityDetail cityDetail)? success,
+    TResult Function(PrayerTimeModel prayerTime)? success,
     TResult Function(AppException error)? error,
     required TResult orElse(),
   }) {
@@ -329,9 +329,9 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({CityDetail cityDetail});
+  $Res call({PrayerTimeModel prayerTime});
 
-  $CityDetailCopyWith<$Res> get cityDetail;
+  $PrayerTimeModelCopyWith<$Res> get prayerTime;
 }
 
 /// @nodoc
@@ -347,13 +347,13 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? cityDetail = null,
+    Object? prayerTime = null,
   }) {
     return _then(_$SuccessImpl(
-      cityDetail: null == cityDetail
-          ? _value.cityDetail
-          : cityDetail // ignore: cast_nullable_to_non_nullable
-              as CityDetail,
+      prayerTime: null == prayerTime
+          ? _value.prayerTime
+          : prayerTime // ignore: cast_nullable_to_non_nullable
+              as PrayerTimeModel,
     ));
   }
 
@@ -361,9 +361,9 @@ class __$$SuccessImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $CityDetailCopyWith<$Res> get cityDetail {
-    return $CityDetailCopyWith<$Res>(_value.cityDetail, (value) {
-      return _then(_value.copyWith(cityDetail: value));
+  $PrayerTimeModelCopyWith<$Res> get prayerTime {
+    return $PrayerTimeModelCopyWith<$Res>(_value.prayerTime, (value) {
+      return _then(_value.copyWith(prayerTime: value));
     });
   }
 }
@@ -371,14 +371,14 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl({required this.cityDetail});
+  const _$SuccessImpl({required this.prayerTime});
 
   @override
-  final CityDetail cityDetail;
+  final PrayerTimeModel prayerTime;
 
   @override
   String toString() {
-    return 'PrayerState.success(cityDetail: $cityDetail)';
+    return 'PrayerState.success(prayerTime: $prayerTime)';
   }
 
   @override
@@ -386,12 +386,12 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            (identical(other.cityDetail, cityDetail) ||
-                other.cityDetail == cityDetail));
+            (identical(other.prayerTime, prayerTime) ||
+                other.prayerTime == prayerTime));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, cityDetail);
+  int get hashCode => Object.hash(runtimeType, prayerTime);
 
   /// Create a copy of PrayerState
   /// with the given fields replaced by the non-null parameter values.
@@ -406,10 +406,10 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CityDetail cityDetail) success,
+    required TResult Function(PrayerTimeModel prayerTime) success,
     required TResult Function(AppException error) error,
   }) {
-    return success(cityDetail);
+    return success(prayerTime);
   }
 
   @override
@@ -417,10 +417,10 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CityDetail cityDetail)? success,
+    TResult? Function(PrayerTimeModel prayerTime)? success,
     TResult? Function(AppException error)? error,
   }) {
-    return success?.call(cityDetail);
+    return success?.call(prayerTime);
   }
 
   @override
@@ -428,12 +428,12 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CityDetail cityDetail)? success,
+    TResult Function(PrayerTimeModel prayerTime)? success,
     TResult Function(AppException error)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(cityDetail);
+      return success(prayerTime);
     }
     return orElse();
   }
@@ -477,10 +477,10 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements PrayerState {
-  const factory _Success({required final CityDetail cityDetail}) =
+  const factory _Success({required final PrayerTimeModel prayerTime}) =
       _$SuccessImpl;
 
-  CityDetail get cityDetail;
+  PrayerTimeModel get prayerTime;
 
   /// Create a copy of PrayerState
   /// with the given fields replaced by the non-null parameter values.
@@ -559,7 +559,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(CityDetail cityDetail) success,
+    required TResult Function(PrayerTimeModel prayerTime) success,
     required TResult Function(AppException error) error,
   }) {
     return error(this.error);
@@ -570,7 +570,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(CityDetail cityDetail)? success,
+    TResult? Function(PrayerTimeModel prayerTime)? success,
     TResult? Function(AppException error)? error,
   }) {
     return error?.call(this.error);
@@ -581,7 +581,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(CityDetail cityDetail)? success,
+    TResult Function(PrayerTimeModel prayerTime)? success,
     TResult Function(AppException error)? error,
     required TResult orElse(),
   }) {
