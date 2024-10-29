@@ -1,21 +1,34 @@
-import 'package:al_quran_app/core/services/geolocation/geolocation_service.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-
-import 'package:al_quran_app/core/core.dart';
-import '../../../../core/services/geolocation/city_detail.dart';
+import '../../../../core/core.dart';
+import '../../../../core/services/geolocation/geolocation_service.dart';
+import '../../data/datasources/prayer_time_datasources.dart';
+import '../../data/models/prayer_time_model.dart';
 
 @lazySingleton
-class GetLocationData {
+class GetPrayerTimeBasedOnLocation {
   final GeolocationService geoService;
-  GetLocationData({required this.geoService});
-  Future<Either<AppException, CityDetail>> call() async {
+  final PrayerTimeDatasources prayerTimeDatasources;
+
+  GetPrayerTimeBasedOnLocation({
+    required this.geoService,
+    required this.prayerTimeDatasources,
+  });
+
+  Future<Either<AppException, PrayerTimeModel>> call() async {
     try {
-      final currentPosition = await geoService.getCurrentPosition();
-      final result = await geoService.getCityDetails(currentPosition);
+      // Mengambil posisi saat ini
+      final position = await geoService.getCurrentPosition();
+      // Mendapatkan detail kota
+      final cityDetail = await geoService.getCityDetails(position);
+
+      // Mengambil waktu sholat dari datasource
+      final result =
+          await prayerTimeDatasources.getPrayerTime(cityDetail: cityDetail);
+
       return Right(result);
-    } on AppException catch (ex) {
-      return Left(ex);
+    } on AppException catch (e) {
+      return Left(e);
     } catch (e) {
       return Left(DefaultAppException(message: e.toString()));
     }
