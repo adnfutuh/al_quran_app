@@ -4,6 +4,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
 import 'city_detail.dart';
+import 'package:intl/intl.dart'; // Untuk format tanggal
 
 @LazySingleton(as: GeolocationService)
 class GeolocationServiceImpl implements GeolocationService {
@@ -40,23 +41,29 @@ class GeolocationServiceImpl implements GeolocationService {
         throw const DefaultAppException(message: 'No placemarks found');
       }
 
-      for (var placemark in placemarks) {
-        print(
-            'Placemark: ${placemark.toJson()}'); // Menampilkan semua data placemark
-      }
-
       final Placemark place = placemarks[0];
       final String subAdministrativeArea =
           place.subAdministrativeArea ?? "Unknown Area";
       final String locality = place.locality ?? "Unknown Location";
+      final String country = place.country ?? "Unknown Country";
 
       if (locality.isEmpty) {
         throw const DefaultAppException(message: 'Locality is empty');
       }
 
+      // Ambil tanggal saat ini
+      final now = DateTime.now();
+      final formattedDate = DateFormat('dd').format(now);
+      final formattedMonth = DateFormat('MMMM').format(now);
+      final formattedYear = DateFormat('yyyy').format(now);
+
       return CityDetail(
         subAdministrativeArea: subAdministrativeArea,
         locality: locality,
+        country: country,
+        date: formattedDate,
+        month: formattedMonth,
+        year: formattedYear,
       );
     } on TimeoutException catch (e) {
       throw DefaultAppException(

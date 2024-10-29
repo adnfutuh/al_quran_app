@@ -20,8 +20,13 @@ CityDetail _$CityDetailFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CityDetail {
-  String get subAdministrativeArea => throw _privateConstructorUsedError;
-  String get locality => throw _privateConstructorUsedError;
+  String get subAdministrativeArea =>
+      throw _privateConstructorUsedError; // Area administratif
+  String get locality => throw _privateConstructorUsedError; // Lokasi/kota
+  String get country => throw _privateConstructorUsedError; // Negara
+  String get date => throw _privateConstructorUsedError; // Tanggal
+  String get month => throw _privateConstructorUsedError; // Bulan
+  String get year => throw _privateConstructorUsedError;
 
   /// Serializes this CityDetail to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +44,13 @@ abstract class $CityDetailCopyWith<$Res> {
           CityDetail value, $Res Function(CityDetail) then) =
       _$CityDetailCopyWithImpl<$Res, CityDetail>;
   @useResult
-  $Res call({String subAdministrativeArea, String locality});
+  $Res call(
+      {String subAdministrativeArea,
+      String locality,
+      String country,
+      String date,
+      String month,
+      String year});
 }
 
 /// @nodoc
@@ -59,6 +70,10 @@ class _$CityDetailCopyWithImpl<$Res, $Val extends CityDetail>
   $Res call({
     Object? subAdministrativeArea = null,
     Object? locality = null,
+    Object? country = null,
+    Object? date = null,
+    Object? month = null,
+    Object? year = null,
   }) {
     return _then(_value.copyWith(
       subAdministrativeArea: null == subAdministrativeArea
@@ -68,6 +83,22 @@ class _$CityDetailCopyWithImpl<$Res, $Val extends CityDetail>
       locality: null == locality
           ? _value.locality
           : locality // ignore: cast_nullable_to_non_nullable
+              as String,
+      country: null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String,
+      month: null == month
+          ? _value.month
+          : month // ignore: cast_nullable_to_non_nullable
+              as String,
+      year: null == year
+          ? _value.year
+          : year // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -81,7 +112,13 @@ abstract class _$$CityDetailImplCopyWith<$Res>
       __$$CityDetailImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String subAdministrativeArea, String locality});
+  $Res call(
+      {String subAdministrativeArea,
+      String locality,
+      String country,
+      String date,
+      String month,
+      String year});
 }
 
 /// @nodoc
@@ -99,6 +136,10 @@ class __$$CityDetailImplCopyWithImpl<$Res>
   $Res call({
     Object? subAdministrativeArea = null,
     Object? locality = null,
+    Object? country = null,
+    Object? date = null,
+    Object? month = null,
+    Object? year = null,
   }) {
     return _then(_$CityDetailImpl(
       subAdministrativeArea: null == subAdministrativeArea
@@ -109,6 +150,22 @@ class __$$CityDetailImplCopyWithImpl<$Res>
           ? _value.locality
           : locality // ignore: cast_nullable_to_non_nullable
               as String,
+      country: null == country
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String,
+      month: null == month
+          ? _value.month
+          : month // ignore: cast_nullable_to_non_nullable
+              as String,
+      year: null == year
+          ? _value.year
+          : year // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -117,19 +174,37 @@ class __$$CityDetailImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CityDetailImpl implements _CityDetail {
   const _$CityDetailImpl(
-      {required this.subAdministrativeArea, required this.locality});
+      {required this.subAdministrativeArea,
+      required this.locality,
+      required this.country,
+      required this.date,
+      required this.month,
+      required this.year});
 
   factory _$CityDetailImpl.fromJson(Map<String, dynamic> json) =>
       _$$CityDetailImplFromJson(json);
 
   @override
   final String subAdministrativeArea;
+// Area administratif
   @override
   final String locality;
+// Lokasi/kota
+  @override
+  final String country;
+// Negara
+  @override
+  final String date;
+// Tanggal
+  @override
+  final String month;
+// Bulan
+  @override
+  final String year;
 
   @override
   String toString() {
-    return 'CityDetail(subAdministrativeArea: $subAdministrativeArea, locality: $locality)';
+    return 'CityDetail(subAdministrativeArea: $subAdministrativeArea, locality: $locality, country: $country, date: $date, month: $month, year: $year)';
   }
 
   @override
@@ -140,12 +215,17 @@ class _$CityDetailImpl implements _CityDetail {
             (identical(other.subAdministrativeArea, subAdministrativeArea) ||
                 other.subAdministrativeArea == subAdministrativeArea) &&
             (identical(other.locality, locality) ||
-                other.locality == locality));
+                other.locality == locality) &&
+            (identical(other.country, country) || other.country == country) &&
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.month, month) || other.month == month) &&
+            (identical(other.year, year) || other.year == year));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, subAdministrativeArea, locality);
+  int get hashCode => Object.hash(
+      runtimeType, subAdministrativeArea, locality, country, date, month, year);
 
   /// Create a copy of CityDetail
   /// with the given fields replaced by the non-null parameter values.
@@ -166,15 +246,27 @@ class _$CityDetailImpl implements _CityDetail {
 abstract class _CityDetail implements CityDetail {
   const factory _CityDetail(
       {required final String subAdministrativeArea,
-      required final String locality}) = _$CityDetailImpl;
+      required final String locality,
+      required final String country,
+      required final String date,
+      required final String month,
+      required final String year}) = _$CityDetailImpl;
 
   factory _CityDetail.fromJson(Map<String, dynamic> json) =
       _$CityDetailImpl.fromJson;
 
   @override
-  String get subAdministrativeArea;
+  String get subAdministrativeArea; // Area administratif
   @override
-  String get locality;
+  String get locality; // Lokasi/kota
+  @override
+  String get country; // Negara
+  @override
+  String get date; // Tanggal
+  @override
+  String get month; // Bulan
+  @override
+  String get year;
 
   /// Create a copy of CityDetail
   /// with the given fields replaced by the non-null parameter values.
