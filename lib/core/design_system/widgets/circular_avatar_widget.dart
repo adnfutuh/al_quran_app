@@ -9,11 +9,11 @@ class CircularAvatarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: size / 2,
-      backgroundColor: Colors.blue,
+      backgroundColor: Pallet.white,
       child: Icon(
         Icons.person,
         size: size * 0.8,
-        color: Pallet.white,
+        color: Pallet.cyan,
       ),
     );
   }
