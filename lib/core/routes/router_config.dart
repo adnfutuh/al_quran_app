@@ -1,11 +1,11 @@
-import 'package:al_quran_app/features/prayer_time/screens/prayer_time_screen.dart';
-import 'package:al_quran_app/presentation/widgets/bottom_nav_widget.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../features/book_mark/screens/book_mark_screen.dart';
-import '../../features/home/screens/home_screen.dart';
-import '../../features/prayer/presentation/ui/screens/quran_screen.dart';
-import '../../features/profile/screens/profile_screen.dart';
+import '../../features/navbar/presentation/ui/screens/book_mark/screens/book_mark_screen.dart';
+import '../../features/navbar/presentation/ui/screens/home/presentation/ui/screens/home_screen.dart';
+import '../../features/navbar/presentation/ui/screens/prayer_time/screens/prayer_time_screen.dart';
+import '../../features/navbar/presentation/ui/widgets/bottom_nav_widget.dart';
+import '../../features/quran/presentation/ui/screens/quran_screen.dart';
+import '../../features/navbar/presentation/ui/screens/profile/screens/profile_screen.dart';
 
 class RoutesConfig {
   static final GoRouter appRouter = GoRouter(
