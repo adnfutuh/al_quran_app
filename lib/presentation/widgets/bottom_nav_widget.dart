@@ -1,1 +1,0 @@
-            changed: (changed) => changed.index,
