@@ -26,11 +26,10 @@ import '../../features/navbar/presentation/ui/screens/home/domain/usecases/get_l
     as _i439;
 import '../../features/navbar/presentation/ui/screens/home/presentation/cubit/location_cubit.dart'
     as _i257;
-import '../../features/prayer/data/datasources/prayer_time_datasources.dart'
-    as _i279;
 import '../../features/prayer/data/repositories/prayer_time_repositories.dart'
     as _i220;
-import '../../features/prayer/domain/usecases/get_location_data.dart' as _i966;
+import '../../features/prayer/domain/usecases/get_prayer_time_based_on_location.dart'
+    as _i441;
 import '../../features/prayer/presentation/cubit/prayer_cubit.dart' as _i918;
 import '../../features/quran/data/datasources/quran_remote_datasources.dart'
     as _i698;
@@ -82,8 +81,14 @@ _i174.GetIt $initGetIt(
   gh.lazySingleton<_i1024.InternetConnectionService>(() =>
       _i1024.InternetConnectionServiceImpl(
           connectivity: gh<_i895.Connectivity>()));
+  gh.lazySingleton<_i220.PrayerTimeRepositories>(() =>
+      _i220.PrayerTimeRepositoriesImpl(
+          prayerTimeDatasources: gh<InvalidType>()));
   gh.lazySingleton<_i439.GetLocationData>(
       () => _i439.GetLocationData(geoService: gh<_i591.GeolocationService>()));
+  gh.lazySingleton<_i441.GetPrayerTimeBasedOnLocation>(() =>
+      _i441.GetPrayerTimeImpl(
+          prayerTimeRepositories: gh<_i220.PrayerTimeRepositories>()));
   gh.lazySingleton<_i274.HttpClientService>(
     () => _i274.HttpClientServiceImpl(
       dio: gh<_i361.Dio>(instanceName: 'base'),
@@ -102,6 +107,8 @@ _i174.GetIt $initGetIt(
       _i698.QuranRemoteDatasourceImpl(
           httpClientService:
               gh<_i351.HttpClientService>(instanceName: 'base')));
+  gh.singleton<_i918.PrayerCubit>(() => _i918.PrayerCubit(
+      getPrayerTimeBasedOnLocation: gh<_i441.GetPrayerTimeBasedOnLocation>()));
   gh.lazySingleton<_i274.HttpClientService>(
     () => _i274.HttpClientServiceImplClient(
       dio: gh<_i361.Dio>(instanceName: 'client'),
@@ -110,34 +117,17 @@ _i174.GetIt $initGetIt(
     ),
     instanceName: 'client',
   );
-  gh.lazySingleton<_i279.PrayerTimeDatasources>(() =>
-      _i279.PrayerTimeDatasourcesImpl(
-        httpClientService: gh<_i351.HttpClientService>(instanceName: 'base'),
-        geoService: gh<_i591.GeolocationService>(),
-      ));
   gh.lazySingleton<_i518.QuranRepository>(() => _i518.QuranRepositoryImpl(
       quranRemoteDatasource: gh<_i698.QuranRemoteDatasource>()));
-  gh.lazySingleton<_i220.PrayerTimeRepositories>(
-      () => _i220.PrayerTimeRepositoriesImpl(
-            prayerTimeDatasources: gh<_i279.PrayerTimeDatasources>(),
-            geoService: gh<_i591.GeolocationService>(),
-          ));
   gh.lazySingleton<_i3.ListQuranRepository>(() => _i3.ListQuranRepositoryImpl(
       listQuranRemoteDatasource: gh<_i529.ListQuranRemoteDatasources>()));
   gh.lazySingleton<_i612.GetQuran>(
       () => _i612.GetQuran(repository: gh<_i518.QuranRepository>()));
   gh.singleton<_i431.QuranCubit>(() => _i431.QuranCubit(gh<_i612.GetQuran>()));
-  gh.lazySingleton<_i966.GetPrayerTimeBasedOnLocation>(
-      () => _i966.GetPrayerTimeBasedOnLocation(
-            geoService: gh<_i591.GeolocationService>(),
-            prayerTimeDatasources: gh<_i279.PrayerTimeDatasources>(),
-          ));
   gh.lazySingleton<_i459.GetListQuran>(
       () => _i459.GetListQuran(repository: gh<_i3.ListQuranRepository>()));
   gh.singleton<_i1005.ListquranCubit>(
       () => _i1005.ListquranCubit(gh<_i459.GetListQuran>()));
-  gh.singleton<_i918.PrayerCubit>(() => _i918.PrayerCubit(
-      getPrayerTimeBasedOnLocation: gh<_i966.GetPrayerTimeBasedOnLocation>()));
   return getIt;
 }
 
