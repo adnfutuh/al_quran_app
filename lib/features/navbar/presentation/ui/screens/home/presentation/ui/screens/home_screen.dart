@@ -6,6 +6,7 @@ import 'package:get_it/get_it.dart';
 
 import '../../../../../../../../../core/core.dart';
 import '../../../../../../../../listquran/presentation/cubit/listquran_cubit.dart';
+import '../../../../../../../../prayer/presentation/cubit/prayer_cubit.dart';
 import '../../../../../../../../prayer/presentation/ui/widgets/prayer_time_widget.dart';
 import '../widgets/home_header_widget.dart';
 
@@ -22,15 +23,33 @@ class HomeScreen extends StatelessWidget {
         BlocProvider(
           create: (context) => GetIt.I<LocationCubit>()..fetchLocation(),
         ),
+        BlocProvider(
+          create: (context) => GetIt.I<PrayerCubit>(),
+        ),
       ],
       child: SafeArea(
         child: Scaffold(
           backgroundColor: Pallet.whiteScaffold,
-          body: const Column(
+          body: Column(
             children: [
-              HomeHeaderWidget(),
-              // PrayerTimeWidget(),
-              Expanded(child: ListQuranScreen()),
+              Container(
+                padding: const EdgeInsets.all(16.0),
+                decoration: const BoxDecoration(
+                  color: Pallet.cyan,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(10),
+                    bottomRight: Radius.circular(10),
+                  ),
+                ),
+                child: const Column(
+                  children: [
+                    HomeHeaderWidget(),
+                    SizedBox(height: 30),
+                    PrayerTimeWidget(),
+                  ],
+                ),
+              ),
+              const Expanded(child: ListQuranScreen()),
             ],
           ),
         ),

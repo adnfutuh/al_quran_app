@@ -2,39 +2,53 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../core/core.dart';
-import '../../../../core/services/geolocation/city_detail.dart';
+import '../../../../core/services/geolocation/geolocation_service.dart';
 import '../../data/models/prayer_time_model.dart';
-import '../../domain/usecases/get_location_data.dart';
+import '../../domain/usecases/get_prayer_time.dart';
 
 part 'prayer_state.dart';
 part 'prayer_cubit.freezed.dart';
 
 @singleton
 class PrayerCubit extends Cubit<PrayerState> {
-  final GetPrayerTimeBasedOnLocation getPrayerTimeBasedOnLocation;
+  final GetPrayerTimes
+      getPrayerTimes; // Use case untuk mendapatkan waktu sholat
+  final GeolocationService geolocationService; // Layanan geolocation
 
-  PrayerCubit({
-    required this.getPrayerTimeBasedOnLocation,
+  PrayerCubit(
+    this.geolocationService, {
+    required this.getPrayerTimes,
   }) : super(const PrayerState.initial());
 
-  void fetchPrayerTime(CityDetail cityDetail) async {
+  // Fungsi untuk mendapatkan waktu sholat berdasarkan lokasi pengguna
+  void fetchPrayerTime() async {
     emit(const PrayerState.loading());
+
     try {
-      final prayerTimeResult = await getPrayerTimeBasedOnLocation();
+      // Ambil posisi pengguna
+      final position = await geolocationService.getCurrentPosition();
+
+      // Dapatkan detail kota dan negara
+      final cityDetail = await geolocationService.getCityDetails(position);
+
+      // Gunakan kota dan negara untuk mendapatkan waktu sholat
+      final prayerTimeResult = await getPrayerTimes(
+        cityDetail.locality, // Nama kota
+        cityDetail.country, // Nama negara
+      );
+
       prayerTimeResult.fold(
         (error) => emit(PrayerState.error(error: error)),
         (prayerTime) => emit(
           PrayerState.success(prayerTime: prayerTime),
         ),
       );
-    } catch (e) {
-      emit(
-          PrayerState.error(error: DefaultAppException(message: e.toString())));
+    } catch (error) {
+      emit(PrayerState.error(
+          error: DefaultAppException(message: error.toString())));
     }
   }
 }
-
-
 
 
 //@singleton: Ini berarti objek akan dibuat sekali dan digunakan di seluruh aplikasi.

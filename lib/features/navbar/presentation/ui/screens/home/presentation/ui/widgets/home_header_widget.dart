@@ -9,60 +9,50 @@ class HomeHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      decoration: const BoxDecoration(
-        color: Pallet.cyan,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(10),
-          bottomRight: Radius.circular(10),
+    return Row(
+      mainAxisAlignment:
+          MainAxisAlignment.spaceBetween, // Mengatur posisi elemen
+      children: [
+        BlocBuilder<LocationCubit, LocationState>(
+          builder: (context, state) {
+            return state.maybeWhen(
+              loading: () => const Center(child: CircularProgressIndicator()),
+              success: (cityDetail) => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        '${cityDetail.date} ${cityDetail.month} ${cityDetail.year}',
+                        style: TextStyles.textMdSemiBold
+                            .copyWith(color: Pallet.white),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    '${cityDetail.locality}, ${cityDetail.country}',
+                    style:
+                        TextStyles.textSmRegular.copyWith(color: Pallet.white),
+                  ),
+                ],
+              ),
+              error: (message) => Text(
+                'Error: $message',
+                style: const TextStyle(color: Colors.red),
+              ),
+              orElse: () => const Text('Tidak ada informasi lokasi.'),
+            );
+          },
         ),
-      ),
-      child: Row(
-        mainAxisAlignment:
-            MainAxisAlignment.spaceBetween, // Mengatur posisi elemen
-        children: [
-          BlocBuilder<LocationCubit, LocationState>(
-            builder: (context, state) {
-              return state.maybeWhen(
-                loading: () => const Center(child: CircularProgressIndicator()),
-                success: (cityDetail) => Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          '${cityDetail.date} ${cityDetail.month} ${cityDetail.year}',
-                          style: TextStyles.textMdSemiBold
-                              .copyWith(color: Pallet.white),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      '${cityDetail.locality}, ${cityDetail.country}',
-                      style: TextStyles.textSmRegular
-                          .copyWith(color: Pallet.white),
-                    ),
-                  ],
-                ),
-                error: (message) => Text(
-                  'Error: $message',
-                  style: const TextStyle(color: Colors.red),
-                ),
-                orElse: () => const Text('Tidak ada informasi lokasi.'),
-              );
-            },
+        IconButton(
+          icon: const Icon(
+            Icons.notifications,
+            color: Pallet.white,
           ),
-          IconButton(
-            icon: const Icon(
-              Icons.notifications,
-              color: Pallet.white,
-            ),
-            onPressed: () {},
-          ),
-        ],
-      ),
+          onPressed: () {},
+        ),
+      ],
     );
   }
 }

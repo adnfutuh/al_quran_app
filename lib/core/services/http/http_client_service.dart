@@ -72,31 +72,18 @@ class HttpClientServiceImpl implements HttpClientService {
     required dynamic data,
     Map<String, dynamic>? queryParameter,
     Options? options,
-  }) async {
-    return _handleRequest(() async {
-      return await dio.delete(
-        path,
-        data: data,
-        queryParameters: queryParameter,
-        options: options,
-      );
-    });
-  }
+  }) async =>
+      _handleRequest(() => dio.delete(path,
+          data: data, queryParameters: queryParameter, options: options));
 
   @override
   Future<Response> get({
     required String path,
     Map<String, dynamic>? queryParameter,
     Options? options,
-  }) async {
-    return _handleRequest(() async {
-      return await dio.get(
-        path,
-        queryParameters: queryParameter,
-        options: options,
-      );
-    });
-  }
+  }) async =>
+      _handleRequest(() =>
+          dio.get(path, queryParameters: queryParameter, options: options));
 
   @override
   Future<Response> patch({
@@ -104,16 +91,9 @@ class HttpClientServiceImpl implements HttpClientService {
     required dynamic data,
     Map<String, dynamic>? queryParameter,
     Options? options,
-  }) async {
-    return _handleRequest(() async {
-      return await dio.patch(
-        path,
-        data: data,
-        queryParameters: queryParameter,
-        options: options,
-      );
-    });
-  }
+  }) async =>
+      _handleRequest(() => dio.patch(path,
+          data: data, queryParameters: queryParameter, options: options));
 
   @override
   Future<Response> post({
@@ -121,16 +101,9 @@ class HttpClientServiceImpl implements HttpClientService {
     required dynamic data,
     Map<String, dynamic>? queryParameter,
     Options? options,
-  }) async {
-    return _handleRequest(() async {
-      return await dio.post(
-        path,
-        data: data,
-        queryParameters: queryParameter,
-        options: options,
-      );
-    });
-  }
+  }) async =>
+      _handleRequest(() => dio.post(path,
+          data: data, queryParameters: queryParameter, options: options));
 
   @override
   Future<Response> put({
@@ -138,16 +111,9 @@ class HttpClientServiceImpl implements HttpClientService {
     required dynamic data,
     Map<String, dynamic>? queryParameter,
     Options? options,
-  }) async {
-    return _handleRequest(() async {
-      return await dio.put(
-        path,
-        data: data,
-        queryParameters: queryParameter,
-        options: options,
-      );
-    });
-  }
+  }) async =>
+      _handleRequest(() => dio.put(path,
+          data: data, queryParameters: queryParameter, options: options));
 
   Future<Response> _handleRequest(Future<Response> Function() request) async {
     try {
@@ -155,13 +121,18 @@ class HttpClientServiceImpl implements HttpClientService {
       return await request();
     } on InternetConnectionException catch (e, trace) {
       loggerService.error(error: e, stackTrace: trace);
-      rethrow;
+      rethrow; // Melempar kembali exception
     } on DioException catch (e, trace) {
-      loggerService.error(error: e, stackTrace: trace);
+      loggerService.error(
+          error: e,
+          stackTrace: trace); // Menangani kemungkinan null di e.response
+      final errorMessage = e.response?.data != null
+          ? e.response!.data.toString()
+          : 'No data received';
       throw ServerException(
         message: (e.response?.statusCode).toString(),
         code: e.toString(),
-        error: e.response?.data,
+        error: errorMessage,
       );
     }
   }
