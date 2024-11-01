@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 
+import '../../features/listquran/presentation/ui/screens/list_quran_sccreen.dart';
 import '../../features/navbar/presentation/ui/screens/book_mark/screens/book_mark_screen.dart';
 import '../../features/navbar/presentation/ui/screens/home/presentation/ui/screens/home_screen.dart';
 import '../../features/navbar/presentation/ui/screens/prayer_time/screens/prayer_time_screen.dart';
@@ -32,6 +33,10 @@ class RoutesConfig {
             builder: (context, state) => const ProfileScreen(),
           ),
         ],
+      ),
+      GoRoute(
+        path: '/listQuran',
+        builder: (context, state) => const ListQuranScreen(),
       ),
       GoRoute(
         path: '/quran/:id',

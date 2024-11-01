@@ -11,49 +11,42 @@ part 'prayer_cubit.freezed.dart';
 
 @singleton
 class PrayerCubit extends Cubit<PrayerState> {
-  final GetPrayerTimes
-      getPrayerTimes; // Use case untuk mendapatkan waktu sholat
-  final GeolocationService geolocationService; // Layanan geolocation
+  final GetPrayerTimes getPrayerTimes;
+  final GeolocationService geolocationService;
+  bool _isDataFetched = false; // Flag untuk memeriksa data
 
   PrayerCubit(
     this.geolocationService, {
     required this.getPrayerTimes,
   }) : super(const PrayerState.initial());
 
-  // Fungsi untuk mendapatkan waktu sholat berdasarkan lokasi pengguna
   void fetchPrayerTime() async {
+    if (_isDataFetched) return; // Hentikan jika data sudah diambil
+
     emit(const PrayerState.loading());
 
     try {
-      // Ambil posisi pengguna
       final position = await geolocationService.getCurrentPosition();
-
-      // Dapatkan detail kota dan negara
       final cityDetail = await geolocationService.getCityDetails(position);
-
-      // Gunakan kota dan negara untuk mendapatkan waktu sholat
       final prayerTimeResult = await getPrayerTimes(
-        cityDetail.locality, // Nama kota
-        cityDetail.country, // Nama negara
+        cityDetail.locality,
+        cityDetail.country,
       );
 
       prayerTimeResult.fold(
         (error) => emit(PrayerState.error(error: error)),
-        (prayerTime) => emit(
-          PrayerState.success(prayerTime: prayerTime),
-        ),
+        (prayerTime) {
+          _isDataFetched = true; // Tandai data sudah diambil
+          emit(PrayerState.success(prayerTime: prayerTime));
+        },
       );
     } catch (error) {
       emit(PrayerState.error(
           error: DefaultAppException(message: error.toString())));
     }
   }
+
+  void resetData() {
+    _isDataFetched = false; // Reset flag
+  }
 }
-
-
-//@singleton: Ini berarti objek akan dibuat sekali dan digunakan di seluruh aplikasi.
-
-//@lazySingleton  Ini berarti objek tidak akan dibuat sampai benar-benar diperlukan, membantu menghemat sumber daya saat aplikasi pertama kali dijalankan.
-
-//@Lazysingleton:Ini hanya variasi penulisan. Di Flutter, penting untuk menggunakan penamaan yang tepat (biasanya registerLazySingleton) untuk memastikan fungsionalitas yang diinginkan
-

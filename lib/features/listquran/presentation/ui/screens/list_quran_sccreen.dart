@@ -27,23 +27,45 @@ class _ListQuranScreenState extends State<ListQuranScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: BlocBuilder<ListquranCubit, ListquranState>(
-            builder: (context, state) {
-              return state.maybeWhen(
-                loading: () => const Center(child: CircularProgressIndicator()),
-                success: (listQuran) => _buildQuranList(listQuran),
-                error: (error) => Center(
-                  child: Text('Kesalahan: ${error.message}'),
-                ),
-                orElse: () => const Center(child: Text('Tidak ada data')),
-              );
-            },
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            context.go('/navbar');
+          },
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            color: Pallet.white,
           ),
         ),
-      ],
+        title: Center(
+            child: Text(
+          'Quran',
+          style: TextStyles.textMdDefault.copyWith(color: Pallet.white),
+        )),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.search,
+              color: Pallet.white,
+            ),
+          ),
+        ],
+        backgroundColor: Pallet.cyan,
+      ),
+      body: BlocBuilder<ListquranCubit, ListquranState>(
+        builder: (context, state) {
+          return state.maybeWhen(
+            loading: () => const Center(child: CircularProgressIndicator()),
+            success: (listQuran) => _buildQuranList(listQuran),
+            error: (error) => Center(
+              child: Text('Kesalahan: ${error.message}'),
+            ),
+            orElse: () => const Center(child: Text('Tidak ada data')),
+          );
+        },
+      ),
     );
   }
 

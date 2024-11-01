@@ -20,8 +20,6 @@ class PrayerTimeDatasourcesImpl implements PrayerTimeDatasources {
             'https://api.aladhan.com/v1/timingsByCity?city=$city&country=$country',
       );
 
-      print('Response status: ${response.statusCode}');
-      print('Response data: ${response.data}');
       return PrayerTimeModel.fromJson(response.data);
     } catch (e) {
       throw ServerException(

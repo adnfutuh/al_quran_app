@@ -1,12 +1,9 @@
-import 'package:al_quran_app/features/listquran/presentation/ui/screens/list_quran_sccreen.dart';
-import 'package:al_quran_app/features/navbar/presentation/ui/screens/home/presentation/cubit/location_cubit.dart';
+import 'package:al_quran_app/features/navbar/presentation/ui/screens/home/presentation/ui/widgets/box_features_widget.dart';
+import 'package:al_quran_app/features/prayer/presentation/ui/widgets/time.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../../../../core/core.dart';
-import '../../../../../../../../listquran/presentation/cubit/listquran_cubit.dart';
-import '../../../../../../../../prayer/presentation/cubit/prayer_cubit.dart';
 import '../../../../../../../../prayer/presentation/ui/widgets/prayer_time_widget.dart';
 import '../widgets/home_header_widget.dart';
 
@@ -15,43 +12,81 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => GetIt.I<ListquranCubit>(),
-        ),
-        BlocProvider(
-          create: (context) => GetIt.I<LocationCubit>()..fetchLocation(),
-        ),
-        BlocProvider(
-          create: (context) => GetIt.I<PrayerCubit>(),
-        ),
-      ],
-      child: SafeArea(
-        child: Scaffold(
-          backgroundColor: Pallet.whiteScaffold,
-          body: Column(
-            children: [
-              Container(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Pallet.cyan,
+        body: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              child: const Column(
+                children: [
+                  HomeHeaderWidget(),
+                  SizedBox(height: 20),
+                  Time(),
+                  SizedBox(height: 10),
+                  PrayerTimeWidget(),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Container(
                 padding: const EdgeInsets.all(16.0),
                 decoration: const BoxDecoration(
-                  color: Pallet.cyan,
+                  color: Pallet.white,
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10),
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
                   ),
                 ),
-                child: const Column(
+                child: Column(
                   children: [
-                    HomeHeaderWidget(),
-                    SizedBox(height: 30),
-                    PrayerTimeWidget(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'All Features',
+                          style: TextStyles.textMdDefault.copyWith(
+                            color: Pallet.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        BoxFeaturesWidget(
+                          icon: Icons.book, // Ganti dengan ikon Alquran
+                          name: 'Alquran',
+                          onTap: () {
+                            context.go('/listQuran');
+                          },
+                        ),
+                        BoxFeaturesWidget(
+                          icon: Icons.alarm, // Ganti dengan ikon Adzan
+                          name: 'Adzan', onTap: () {},
+                        ),
+                        BoxFeaturesWidget(
+                          icon: Icons.location_on, // Ganti dengan ikon Qiblat
+                          name: 'Qiblat', onTap: () {},
+                        ),
+                        BoxFeaturesWidget(
+                          icon: Icons
+                              .monetization_on, // Ganti dengan ikon Donation
+                          name: 'Donation', onTap: () {},
+                        ),
+                        BoxFeaturesWidget(
+                          icon: Icons.list, // Ganti dengan ikon All
+                          name: 'All', onTap: () {},
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
-              const Expanded(child: ListQuranScreen()),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

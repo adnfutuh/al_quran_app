@@ -17,114 +17,66 @@ class _PrayerTimeWidgetState extends State<PrayerTimeWidget> {
   void initState() {
     super.initState();
     final cubit = GetIt.I<PrayerCubit>();
-    if (!cubit.isClosed) {
-      cubit.fetchPrayerTime();
-    }
+
+    cubit.fetchPrayerTime();
   }
 
   @override
   Widget build(BuildContext context) {
+    final cubit = GetIt.I<PrayerCubit>();
+
     return BlocProvider.value(
-      value: GetIt.I<PrayerCubit>(),
+      value: cubit,
       child: Column(
         children: [
           BlocBuilder<PrayerCubit, PrayerState>(
             builder: (context, state) {
               log(state.runtimeType.toString());
               log(state.toString());
+
               return state.maybeWhen(
                 success: (prayerTime) {
-                  return Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                'Fajr',
-                                style: TextStyles.textSmRegular
-                                    .copyWith(color: Pallet.white),
-                              ),
-                              Text(
-                                prayerTime.data.timings.Fajr,
-                                style: TextStyles.textSmRegular
-                                    .copyWith(color: Pallet.white),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                'Dhuhr',
-                                style: TextStyles.textSmRegular
-                                    .copyWith(color: Pallet.white),
-                              ),
-                              Text(
-                                prayerTime.data.timings.Dhuhr,
-                                style: TextStyles.textSmRegular
-                                    .copyWith(color: Pallet.white),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                'Asr',
-                                style: TextStyles.textSmRegular
-                                    .copyWith(color: Pallet.white),
-                              ),
-                              Text(
-                                prayerTime.data.timings.Asr,
-                                style: TextStyles.textSmRegular
-                                    .copyWith(color: Pallet.white),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                'Maghrib',
-                                style: TextStyles.textSmRegular
-                                    .copyWith(color: Pallet.white),
-                              ),
-                              Text(
-                                prayerTime.data.timings.Maghrib,
-                                style: TextStyles.textSmRegular
-                                    .copyWith(color: Pallet.white),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                'Isha',
-                                style: TextStyles.textSmRegular
-                                    .copyWith(color: Pallet.white),
-                              ),
-                              Text(
-                                prayerTime.data.timings.Isha,
-                                style: TextStyles.textSmRegular
-                                    .copyWith(color: Pallet.white),
-                              ),
-                            ],
-                          ),
-                        ],
-                      )
-                    ],
-                  );
+                  return _buildPrayerTimeDisplay(prayerTime);
                 },
                 error: (error) {
                   return Text('Error: ${error.message}');
                 },
                 orElse: () {
-                  return const Text("Loading...");
+                  return const CircularProgressIndicator();
                 },
               );
             },
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildPrayerTimeDisplay(prayerTime) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        _buildPrayerTimeColumn('Fajr', prayerTime.data.timings.Fajr),
+        _buildPrayerTimeColumn('Dhuhr', prayerTime.data.timings.Dhuhr),
+        _buildPrayerTimeColumn('Asr', prayerTime.data.timings.Asr),
+        _buildPrayerTimeColumn('Maghrib', prayerTime.data.timings.Maghrib),
+        _buildPrayerTimeColumn('Isha', prayerTime.data.timings.Isha),
+      ],
+    );
+  }
+
+  Widget _buildPrayerTimeColumn(String title, String time) {
+    return Column(
+      children: [
+        Text(
+          title,
+          style: TextStyles.textSmRegular.copyWith(color: Pallet.white),
+        ),
+        Text(
+          time,
+          style: TextStyles.textSmRegular.copyWith(color: Pallet.white),
+        ),
+      ],
     );
   }
 }

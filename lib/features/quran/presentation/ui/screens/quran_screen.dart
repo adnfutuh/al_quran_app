@@ -44,7 +44,7 @@ class _QuranScreenState extends State<QuranScreen> {
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () {
-                  context.go('/navbar');
+                  context.go('/listQuran');
                 },
               ),
             ),
