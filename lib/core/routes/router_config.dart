@@ -1,3 +1,4 @@
+import 'package:al_quran_app/features/intro/presentation/ui/screens/splash_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import '../../features/listquran/presentation/ui/screens/list_quran_sccreen.dart';
@@ -10,8 +11,12 @@ import '../../features/navbar/presentation/ui/screens/profile/screens/profile_sc
 
 class RoutesConfig {
   static final GoRouter appRouter = GoRouter(
-    initialLocation: '/navbar/home',
+    initialLocation: '/splash',
     routes: [
+      GoRoute(
+        path: '/splash',
+        builder: (context, state) => const SplashPage(),
+      ),
       ShellRoute(
         navigatorKey: GlobalKey<NavigatorState>(),
         builder: (context, state, child) {
