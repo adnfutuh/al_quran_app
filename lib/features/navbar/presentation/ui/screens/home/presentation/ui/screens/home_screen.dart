@@ -12,82 +12,87 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Pallet.cyan,
-        body: Column(
-          children: [
-            Container(
+    return Scaffold(
+      backgroundColor: Pallet.cyan,
+      body: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16.0),
+            child: const Column(
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                HomeHeaderWidget(),
+                SizedBox(height: 20),
+                Time(),
+                SizedBox(height: 10),
+                PrayerTimeWidget(),
+              ],
+            ),
+          ),
+          const SizedBox(height: 50),
+          Expanded(
+            child: Container(
               padding: const EdgeInsets.all(16.0),
-              child: const Column(
+              decoration: const BoxDecoration(
+                color: Pallet.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  topRight: Radius.circular(20),
+                ),
+              ),
+              child: Column(
                 children: [
-                  HomeHeaderWidget(),
-                  SizedBox(height: 20),
-                  Time(),
-                  SizedBox(height: 10),
-                  PrayerTimeWidget(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'All Features',
+                        style: TextStyles.textMdDefault.copyWith(
+                          color: Pallet.black,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      BoxFeaturesWidget(
+                        icon: Icons.book,
+                        name: 'Alquran',
+                        onTap: () {
+                          context.go('/listQuran');
+                        },
+                      ),
+                      BoxFeaturesWidget(
+                        icon: Icons.alarm,
+                        name: 'Adzan',
+                        onTap: () {},
+                      ),
+                      BoxFeaturesWidget(
+                        icon: Icons.location_on,
+                        name: 'Qiblat',
+                        onTap: () {},
+                      ),
+                      BoxFeaturesWidget(
+                        icon: Icons.monetization_on,
+                        name: 'Donation',
+                        onTap: () {},
+                      ),
+                      BoxFeaturesWidget(
+                        icon: Icons.list,
+                        name: 'All',
+                        onTap: () {},
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.all(16.0),
-                decoration: const BoxDecoration(
-                  color: Pallet.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          'All Features',
-                          style: TextStyles.textMdDefault.copyWith(
-                            color: Pallet.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        BoxFeaturesWidget(
-                          icon: Icons.book, // Ganti dengan ikon Alquran
-                          name: 'Alquran',
-                          onTap: () {
-                            context.go('/listQuran');
-                          },
-                        ),
-                        BoxFeaturesWidget(
-                          icon: Icons.alarm, // Ganti dengan ikon Adzan
-                          name: 'Adzan', onTap: () {},
-                        ),
-                        BoxFeaturesWidget(
-                          icon: Icons.location_on, // Ganti dengan ikon Qiblat
-                          name: 'Qiblat', onTap: () {},
-                        ),
-                        BoxFeaturesWidget(
-                          icon: Icons
-                              .monetization_on, // Ganti dengan ikon Donation
-                          name: 'Donation', onTap: () {},
-                        ),
-                        BoxFeaturesWidget(
-                          icon: Icons.list, // Ganti dengan ikon All
-                          name: 'All', onTap: () {},
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

@@ -1,12 +1,15 @@
 import 'dart:developer';
+import 'package:al_quran_app/features/quran/data/models/ayat_model.dart';
 import 'package:al_quran_app/features/quran/presentation/cubit/quran_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-
 import '../../../../../core/core.dart';
+import '../../../../audio/presentation/ui/widgets/audio_play.dart';
+
+import '../../../data/models/surah_model.dart';
 
 class QuranScreen extends StatefulWidget {
   final int surahId;
@@ -18,97 +21,158 @@ class QuranScreen extends StatefulWidget {
 }
 
 class _QuranScreenState extends State<QuranScreen> {
+  bool _isDataFetched = false;
+
   @override
   void initState() {
     super.initState();
+
     final quranCubit = GetIt.I<QuranCubit>();
-    if (!quranCubit.isClosed) {
+
+    if (!quranCubit.isClosed && !_isDataFetched) {
       quranCubit.getQuranData(widget.surahId);
+      _isDataFetched = true;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: GetIt.I<QuranCubit>(),
-      child: BlocBuilder<QuranCubit, QuranState>(
-        builder: (context, state) {
-          log(state.runtimeType.toString());
-          log(state.toString());
-          return Scaffold(
-            appBar: AppBar(
-              title: state.maybeWhen(
-                success: (surahModel) => Text(surahModel.nama),
-                orElse: () => const Text(''),
-              ),
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () {
-                  context.go('/listQuran');
-                },
-              ),
-            ),
-            body: state.maybeWhen(
-              success: (surahModel) => Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
+    return BlocBuilder<QuranCubit, QuranState>(builder: (context, state) {
+      log(state.runtimeType.toString());
+      log(state.toString());
+
+      return Scaffold(
+        appBar: AppBar(
+          title: state.maybeWhen(
+            success: (surahModel) => Text(surahModel.nama),
+            orElse: () => const Text(''),
+          ),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => context.replace('/listQuran'),
+          ),
+        ),
+        body: _buildBody(state),
+      );
+    });
+  }
+
+  Widget _buildBody(QuranState state) {
+    return state.maybeWhen(
+      success: (surahModel) => Padding(
+        padding: const EdgeInsets.all(14.0),
+        child: ListView.builder(
+          itemCount: surahModel.jumlahAyat + 1,
+          itemBuilder: (context, index) {
+            if (index == 0) {
+              return _buildSurahInfoCard(surahModel);
+            } else {
+              return _buildAyatTile(surahModel.ayat[index - 1], index);
+            }
+          },
+        ),
+      ),
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (error) => _buildErrorView(error),
+      orElse: () => const Center(child: Text("Tidak ada data tersedia")),
+    );
+  }
+
+  Widget _buildSurahInfoCard(SurahModel surahModel) {
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+      color: Pallet.white,
+      elevation: 2,
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${surahModel.namaLatin} - ${surahModel.nama}',
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 10,
                   children: [
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: surahModel.jumlahAyat,
-                        itemBuilder: (context, index) {
-                          return ListTile(
-                            title: Text(
-                              surahModel.ayat[index].ar,
-                              textAlign: TextAlign.right,
-                              style: const TextStyle(fontSize: 20),
-                            ),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                HtmlWidget(
-                                  surahModel.ayat[index].tr, // Render HTML
-                                  textStyle: const TextStyle(
-                                    color: Pallet.cyan,
-                                  ),
-                                ),
-                                Text(surahModel.ayat[index].idn),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        const Icon(Icons.list),
+                        const SizedBox(width: 5),
+                        Text('Jumlah Ayat: ${surahModel.jumlahAyat}'),
+                      ],
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        const Icon(Icons.location_on),
+                        const SizedBox(width: 5),
+                        Text('Tempat Turun: ${surahModel.tempatTurun}'),
+                      ],
                     ),
                   ],
                 ),
-              ),
-              loading: () => const Center(
-                child: CircularProgressIndicator(),
-              ),
-              error: (error) => Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Kesalahan: ${error.message}'),
-                    const SizedBox(height: 8),
-                    ElevatedButton(
-                      onPressed: () {
-                        final quranCubit = GetIt.I<QuranCubit>();
-                        if (!quranCubit.isClosed) {
-                          quranCubit.getQuranData(widget.surahId);
-                        }
-                      },
-                      child: const Text('Coba Lagi'),
-                    ),
-                  ],
+                const SizedBox(height: 15),
+                AudioPlayerUI(
+                  surahModel: surahModel,
                 ),
-              ),
-              orElse: () => const Center(
-                child: Text("Tidak ada data tersedia"),
-              ),
+              ],
             ),
-          );
-        },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAyatTile(AyatModel ayat, int nomorAyat) {
+    return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+      color: Pallet.white,
+      elevation: 2,
+      child: ListTile(
+        title: Text(
+          ayat.ar,
+          textAlign: TextAlign.right,
+          style: const TextStyle(fontSize: 20),
+        ),
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 5),
+            HtmlWidget(
+              ayat.tr,
+              textStyle: const TextStyle(color: Pallet.cyan),
+            ),
+            const SizedBox(height: 3),
+            Text(ayat.idn),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildErrorView(AppException error) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Kesalahan: ${error.message}'),
+          const SizedBox(height: 8),
+          ElevatedButton(
+            onPressed: () {
+              final quranCubit = GetIt.I<QuranCubit>();
+              if (!quranCubit.isClosed) {
+                quranCubit.getQuranData(widget.surahId);
+              }
+            },
+            child: const Text('Coba Lagi'),
+          ),
+        ],
       ),
     );
   }

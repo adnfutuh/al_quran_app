@@ -8,7 +8,9 @@ import '../screens/prayer_time/screens/prayer_time_screen.dart';
 import '../screens/profile/screens/profile_screen.dart';
 
 class BottomNavWidget extends StatelessWidget {
-  const BottomNavWidget({super.key});
+  final Widget child; // Tambahkan properti child
+
+  const BottomNavWidget({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
