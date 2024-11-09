@@ -13,7 +13,7 @@ part 'prayer_cubit.freezed.dart';
 class PrayerCubit extends Cubit<PrayerState> {
   final GetPrayerTimes getPrayerTimes;
   final GeolocationService geolocationService;
-  bool _isDataFetched = false; // Flag untuk memeriksa data
+  PrayerTimeModel? _cachedPrayerTime;
 
   PrayerCubit(
     this.geolocationService, {
@@ -21,7 +21,10 @@ class PrayerCubit extends Cubit<PrayerState> {
   }) : super(const PrayerState.initial());
 
   void fetchPrayerTime() async {
-    if (_isDataFetched) return; // Hentikan jika data sudah diambil
+    if (_cachedPrayerTime != null) {
+      emit(PrayerState.success(prayerTime: _cachedPrayerTime!));
+      return;
+    }
 
     emit(const PrayerState.loading());
 
@@ -36,7 +39,7 @@ class PrayerCubit extends Cubit<PrayerState> {
       prayerTimeResult.fold(
         (error) => emit(PrayerState.error(error: error)),
         (prayerTime) {
-          _isDataFetched = true; // Tandai data sudah diambil
+          _cachedPrayerTime = prayerTime;
           emit(PrayerState.success(prayerTime: prayerTime));
         },
       );
@@ -46,7 +49,8 @@ class PrayerCubit extends Cubit<PrayerState> {
     }
   }
 
-  void resetData() {
-    _isDataFetched = false; // Reset flag
+  // Metode untuk menghapus cache jika diperlukan
+  void clearCache() {
+    _cachedPrayerTime = null;
   }
 }

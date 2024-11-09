@@ -20,14 +20,14 @@ class _TimeState extends State<Time> {
     now = DateTime.now();
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
-        now = DateTime.now(); // Memperbarui waktu saat ini
+        now = DateTime.now();
       });
     });
   }
 
   @override
   void dispose() {
-    timer.cancel(); // Menghentikan timer saat widget dibuang
+    timer.cancel();
     super.dispose();
   }
 
