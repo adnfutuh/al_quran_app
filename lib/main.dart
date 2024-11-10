@@ -1,5 +1,6 @@
 import 'package:al_quran_app/core/di/injector.dart';
 import 'package:al_quran_app/core/routes/router_config.dart';
+import 'package:al_quran_app/features/video/presentation/cubit/video_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -46,6 +47,9 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => AudioCubit(),
+          ),
+          BlocProvider(
+            create: (context) => GetIt.I<VideoCubit>(),
           ),
         ],
         child: MaterialApp.router(
