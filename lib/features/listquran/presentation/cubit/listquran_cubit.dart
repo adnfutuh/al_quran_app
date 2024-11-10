@@ -24,7 +24,6 @@ class ListquranCubit extends Cubit<ListquranState> {
 
     emit(const ListquranState.loading());
     try {
-      print("Fetching data from API...");
       final result = await getListQuran();
       result.fold((error) {
         emit(ListquranState.error(error: error));
@@ -35,7 +34,6 @@ class ListquranCubit extends Cubit<ListquranState> {
     } catch (e) {
       emit(ListquranState.error(
           error: DefaultAppException(message: e.toString())));
-      print("Error fetching data: $e");
     }
   }
 }
