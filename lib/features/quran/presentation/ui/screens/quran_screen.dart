@@ -42,7 +42,9 @@ class _QuranScreenState extends State<QuranScreen> {
       log(state.toString());
 
       return Scaffold(
+        backgroundColor: Theme.of(context).bgScaffold,
         appBar: AppBar(
+          backgroundColor: Theme.of(context).bgScaffold,
           title: state.maybeWhen(
             success: (surahModel) => Text(surahModel.nama),
             orElse: () => const Text(''),
@@ -81,7 +83,7 @@ class _QuranScreenState extends State<QuranScreen> {
   Widget _buildSurahInfoCard(SurahModel surahModel) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-      color: Pallet.white,
+      color: Theme.of(context).container3,
       elevation: 2,
       child: Column(
         children: [
@@ -129,10 +131,12 @@ class _QuranScreenState extends State<QuranScreen> {
     );
   }
 
+  Color text = const Color(0xFFA19CC5);
+
   Widget _buildAyatTile(AyatModel ayat, int nomorAyat) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-      color: Pallet.white,
+      color: Theme.of(context).container3,
       elevation: 2,
       child: ListTile(
         title: Text(
@@ -146,10 +150,13 @@ class _QuranScreenState extends State<QuranScreen> {
             const SizedBox(height: 5),
             HtmlWidget(
               ayat.tr,
-              textStyle: const TextStyle(color: Pallet.cyan),
+              textStyle: TextStyle(color: Theme.of(context).boxFeatures),
             ),
             const SizedBox(height: 3),
-            Text(ayat.idn),
+            Text(
+              ayat.idn,
+              style: TextStyle(color: Theme.of(context).textAyatIdn),
+            ),
           ],
         ),
       ),

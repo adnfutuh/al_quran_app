@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../core/core.dart';
 
@@ -37,10 +38,12 @@ class _TimeState extends State<Time> {
         "${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}";
 
     return Center(
-      child: Text(
-        formattedTime,
-        style: TextStyles.text4XlSemiBold.copyWith(color: Pallet.white),
-      ),
+      child: Text(formattedTime,
+          style: GoogleFonts.poppins(
+            color: Colors.white,
+            fontSize: Dimension.style60,
+            fontWeight: FontWeight.w500,
+          )),
     );
   }
 }

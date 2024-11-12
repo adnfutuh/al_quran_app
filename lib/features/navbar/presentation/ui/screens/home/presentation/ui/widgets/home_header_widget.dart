@@ -10,8 +10,7 @@ class HomeHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment:
-          MainAxisAlignment.spaceBetween, // Mengatur posisi elemen
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         BlocBuilder<LocationCubit, LocationState>(
           builder: (context, state) {

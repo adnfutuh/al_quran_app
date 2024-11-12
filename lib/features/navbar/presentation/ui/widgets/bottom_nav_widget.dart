@@ -8,7 +8,7 @@ import '../screens/prayer_time/screens/prayer_time_screen.dart';
 import '../screens/profile/screens/profile_screen.dart';
 
 class BottomNavWidget extends StatelessWidget {
-  final Widget child; // Tambahkan properti child
+  final Widget child;
 
   const BottomNavWidget({super.key, required this.child});
 
@@ -42,9 +42,9 @@ class BottomNavWidget extends StatelessWidget {
 
           return BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
-            selectedItemColor: Pallet.cyan,
-            unselectedItemColor: Pallet.grey,
-            backgroundColor: Pallet.white,
+            selectedItemColor: Theme.of(context).boxFeatures,
+            unselectedItemColor: Theme.of(context).textUnselect,
+            backgroundColor: Theme.of(context).bgNavBar,
             currentIndex: currentIndex,
             onTap: (index) {
               context.read<BottomNavCubit>().changeTab(index);

@@ -17,7 +17,7 @@ class BoxFeaturesWidget extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
-              color: Pallet.cyan,
+              color: Theme.of(context).boxFeatures,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Icon(
@@ -30,7 +30,7 @@ class BoxFeaturesWidget extends StatelessWidget {
         Text(
           name,
           style: TextStyles.defaultStyle.copyWith(
-            color: Pallet.black,
+            color: Theme.of(context).textBoxFeatures,
           ),
         )
       ],
