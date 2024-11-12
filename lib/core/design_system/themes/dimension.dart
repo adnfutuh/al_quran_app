@@ -20,6 +20,8 @@ class Dimension {
   static double style40 = 40.sp;
   static double style50 = 50.sp;
   static double style60 = 60.sp;
+  static double style70 = 70.sp;
+  static double style80 = 80.sp;
   static double style90 = 90.sp;
 
   // size height
