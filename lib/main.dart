@@ -1,5 +1,7 @@
 import 'package:al_quran_app/core/di/injector.dart';
 import 'package:al_quran_app/core/routes/router_config.dart';
+import 'package:al_quran_app/features/theme/cubit/theme_cubit.dart';
+import 'package:al_quran_app/features/theme/cubit/theme_state.dart';
 import 'package:al_quran_app/features/video/presentation/cubit/video_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,10 +53,18 @@ class MyApp extends StatelessWidget {
           BlocProvider(
             create: (context) => GetIt.I<VideoCubit>(),
           ),
+          BlocProvider(
+            create: (context) => ThemeCubit(),
+          ),
         ],
-        child: MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          routerConfig: RoutesConfig.appRouter,
+        child: BlocBuilder<ThemeCubit, ThemeState>(
+          builder: (context, state) {
+            return MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              theme: state.isDark ? ThemeData.dark() : ThemeData.light(),
+              routerConfig: RoutesConfig.appRouter,
+            );
+          },
         ),
       ),
     );
