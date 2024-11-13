@@ -1,19 +1,23 @@
-import 'package:al_quran_app/core/design_system/themes/pallet.dart';
 import 'package:flutter/material.dart';
 
 class CircularAvatarWidget extends StatelessWidget {
   final double size;
-  const CircularAvatarWidget({super.key, required this.size});
+  final String imagePath;
+
+  const CircularAvatarWidget(
+      {super.key, required this.size, required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: size / 2,
-      backgroundColor: Pallet.white,
-      child: Icon(
-        Icons.person,
-        size: size * 0.8,
-        color: Pallet.cyan,
+      child: ClipOval(
+        child: Image.asset(
+          imagePath,
+          width: size,
+          height: size,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
