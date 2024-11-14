@@ -2,9 +2,9 @@ import 'dart:async';
 import 'package:al_quran_app/core/core.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:hijri/hijri_calendar.dart';
 import 'package:injectable/injectable.dart';
 import 'city_detail.dart';
-import 'package:intl/intl.dart'; // Untuk format tanggal
 
 @LazySingleton(as: GeolocationService)
 class GeolocationServiceImpl implements GeolocationService {
@@ -51,19 +51,20 @@ class GeolocationServiceImpl implements GeolocationService {
         throw const DefaultAppException(message: 'Locality is empty');
       }
 
-      // Ambil tanggal saat ini
       final now = DateTime.now();
-      final formattedDate = DateFormat('dd').format(now);
-      final formattedMonth = DateFormat('MMMM').format(now);
-      final formattedYear = DateFormat('yyyy').format(now);
+
+      final hijriDate = HijriCalendar.fromDate(now);
+      final hijriDay = hijriDate.hDay;
+      final hijriMonth = hijriDate.longMonthName;
+      final hijriYear = hijriDate.hYear;
 
       return CityDetail(
         subAdministrativeArea: subAdministrativeArea,
         locality: locality,
         country: country,
-        date: formattedDate,
-        month: formattedMonth,
-        year: formattedYear,
+        date: hijriDay.toString(),
+        month: hijriMonth,
+        year: '$hijriYear H',
       );
     } on TimeoutException catch (e) {
       throw DefaultAppException(

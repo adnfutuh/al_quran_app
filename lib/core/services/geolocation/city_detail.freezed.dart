@@ -20,12 +20,11 @@ CityDetail _$CityDetailFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CityDetail {
-  String get subAdministrativeArea =>
-      throw _privateConstructorUsedError; // Area administratif
-  String get locality => throw _privateConstructorUsedError; // Lokasi/kota
-  String get country => throw _privateConstructorUsedError; // Negara
-  String get date => throw _privateConstructorUsedError; // Tanggal
-  String get month => throw _privateConstructorUsedError; // Bulan
+  String get subAdministrativeArea => throw _privateConstructorUsedError;
+  String get locality => throw _privateConstructorUsedError;
+  String get country => throw _privateConstructorUsedError;
+  String get date => throw _privateConstructorUsedError;
+  String get month => throw _privateConstructorUsedError;
   String get year => throw _privateConstructorUsedError;
 
   /// Serializes this CityDetail to a JSON map.
@@ -186,19 +185,14 @@ class _$CityDetailImpl implements _CityDetail {
 
   @override
   final String subAdministrativeArea;
-// Area administratif
   @override
   final String locality;
-// Lokasi/kota
   @override
   final String country;
-// Negara
   @override
   final String date;
-// Tanggal
   @override
   final String month;
-// Bulan
   @override
   final String year;
 
@@ -256,15 +250,15 @@ abstract class _CityDetail implements CityDetail {
       _$CityDetailImpl.fromJson;
 
   @override
-  String get subAdministrativeArea; // Area administratif
+  String get subAdministrativeArea;
   @override
-  String get locality; // Lokasi/kota
+  String get locality;
   @override
-  String get country; // Negara
+  String get country;
   @override
-  String get date; // Tanggal
+  String get date;
   @override
-  String get month; // Bulan
+  String get month;
   @override
   String get year;
 
