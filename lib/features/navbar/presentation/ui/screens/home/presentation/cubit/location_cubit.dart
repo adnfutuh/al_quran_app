@@ -20,7 +20,7 @@ class LocationCubit extends Cubit<LocationState> {
   Future<void> fetchLocation() async {
     if (_cachedCityDetail != null) {
       emit(LocationState.success(_cachedCityDetail!));
-      return; // Mengembalikan data dari cache jika tersedia
+      return;
     }
 
     emit(const LocationState.loading());
@@ -32,7 +32,7 @@ class LocationCubit extends Cubit<LocationState> {
         emit(LocationState.error(error));
       },
       (cityDetail) {
-        _cachedCityDetail = cityDetail; // Simpan data ke cache
+        _cachedCityDetail = cityDetail;
         emit(LocationState.success(cityDetail));
       },
     );

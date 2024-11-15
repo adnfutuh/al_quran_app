@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../core/core.dart';
 
 abstract class ListQuranRepository {
-  Future<Either<AppException, List<ListAyat>>> getListQuran(); // Ubah di sini
+  Future<Either<AppException, List<ListAyat>>> getListQuran();
 }
 
 @LazySingleton(as: ListQuranRepository)
@@ -17,7 +17,6 @@ class ListQuranRepositoryImpl implements ListQuranRepository {
 
   @override
   Future<Either<AppException, List<ListAyat>>> getListQuran() async {
-    // Ubah di sini
     try {
       final result = await listQuranRemoteDatasource.getListQuran();
       return Right(result);

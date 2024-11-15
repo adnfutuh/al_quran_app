@@ -75,11 +75,12 @@ class QuranSearchDelegate extends SearchDelegate {
   Widget _buildAyatCard(BuildContext context, ListAyat ayat) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      color: Theme.of(context).container2,
       elevation: 4,
       child: ListTile(
         contentPadding: const EdgeInsets.all(16),
         leading: CircleAvatar(
-          backgroundColor: Pallet.cyan,
+          backgroundColor: Theme.of(context).boxFeatures,
           child: Text(
             '${ayat.nomor}',
             style: const TextStyle(color: Colors.white),
@@ -92,7 +93,9 @@ class QuranSearchDelegate extends SearchDelegate {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(ayat.namaLatin, style: TextStyles.textSmDefault),
+                  Text(ayat.namaLatin,
+                      style: TextStyles.textSmDefault
+                          .copyWith(color: Theme.of(context).textBoxFeatures)),
                   Text(
                     ayat.arti,
                     style:
@@ -103,8 +106,11 @@ class QuranSearchDelegate extends SearchDelegate {
             ),
             Text(
               ayat.nama,
-              style: TextStyles.textLgDefault
-                  .copyWith(fontWeight: FontWeight.bold),
+              style: TextStyles.textLgDefault.copyWith(
+                fontFamily: 'Amiri',
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).textListQuran,
+              ),
             ),
           ],
         ),

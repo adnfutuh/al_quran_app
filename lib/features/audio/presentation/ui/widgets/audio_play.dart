@@ -15,7 +15,6 @@ class AudioPlayerUI extends StatelessWidget {
         String audioUrl = surahModel.audio;
         return state.maybeWhen(
           initial: () {
-            print('init');
             return InkWell(
               borderRadius: BorderRadius.circular(16),
               onTap: () {
@@ -37,7 +36,6 @@ class AudioPlayerUI extends StatelessWidget {
             );
           },
           playing: () {
-            print('play');
             return InkWell(
               borderRadius: BorderRadius.circular(16),
               onTap: () {
@@ -59,7 +57,6 @@ class AudioPlayerUI extends StatelessWidget {
             );
           },
           paused: () {
-            print('Pased');
             return InkWell(
               borderRadius: BorderRadius.circular(16),
               onTap: () {
@@ -81,7 +78,6 @@ class AudioPlayerUI extends StatelessWidget {
             );
           },
           stopped: () {
-            print('Stop');
             return InkWell(
               borderRadius: BorderRadius.circular(16),
               onTap: () {
