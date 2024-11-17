@@ -35,52 +35,57 @@ class _ListQuranScreenState extends State<ListQuranScreen> {
     return BlocBuilder<ListquranCubit, ListquranState>(
       builder: (context, state) {
         return state.maybeWhen(
+          success: (listAyat) => Scaffold(
+            backgroundColor: Theme.of(context).bgScaffold,
+            appBar: appbar_listquran(context, listAyat),
+            body: _buildQuranList(listAyat),
+          ),
           loading: () => const Scaffold(
               backgroundColor: Pallet.white,
               body: Center(child: CircularProgressIndicator())),
-          success: (listAyat) => Scaffold(
-            appBar: AppBar(
-              leading: IconButton(
-                onPressed: () {
-                  context.go('/navbar/home');
-                },
-                icon: const Icon(
-                  Icons.arrow_back_ios,
-                  color: Pallet.white,
-                ),
-              ),
-              title: Center(
-                child: Text(
-                  'Quran',
-                  style: TextStyles.textMdDefault.copyWith(color: Pallet.white),
-                ),
-              ),
-              actions: [
-                IconButton(
-                  onPressed: () {
-                    if (listAyat.isNotEmpty) {
-                      showSearch(
-                        context: context,
-                        delegate: QuranSearchDelegate(listAyat),
-                      );
-                    }
-                  },
-                  icon: const Icon(
-                    Icons.search,
-                    color: Pallet.white,
-                  ),
-                ),
-              ],
-              backgroundColor: Pallet.cyan,
-            ),
-            body: _buildQuranList(listAyat),
-          ),
           error: (error) => Center(
             child: Text('Kesalahan: ${error.message}'),
           ),
           orElse: () => const Center(child: Text('Tidak ada data')),
         );
       },
+    );
+  }
+
+  AppBar appbar_listquran(BuildContext context, List<ListAyat> listAyat) {
+    return AppBar(
+      backgroundColor: Theme.of(context).bgScaffold4,
+      leading: IconButton(
+        onPressed: () {
+          context.go('/navbar/home');
+        },
+        icon: const Icon(
+          Icons.arrow_back_ios,
+          color: Pallet.white,
+        ),
+      ),
+      title: Center(
+        child: Text(
+          'Quran',
+          style: TextStyles.textMdDefault.copyWith(color: Pallet.white),
+        ),
+      ),
+      actions: [
+        IconButton(
+          onPressed: () {
+            if (listAyat.isNotEmpty) {
+              showSearch(
+                context: context,
+                delegate: QuranSearchDelegate(listAyat),
+              );
+            }
+          },
+          icon: const Icon(
+            Icons.search,
+            color: Pallet.white,
+          ),
+        ),
+      ],
     );
   }
 
@@ -96,14 +101,27 @@ class _ListQuranScreenState extends State<ListQuranScreen> {
   Widget _buildAyatCard(ListAyat ayat) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      color: Theme.of(context).container2,
       elevation: 4,
       child: ListTile(
         contentPadding: const EdgeInsets.all(16),
-        leading: CircleAvatar(
-          backgroundColor: Pallet.cyan,
-          child: Text(
-            '${ayat.nomor}',
-            style: const TextStyle(color: Colors.white),
+        leading: SizedBox(
+          height: 40,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Image.asset(
+                'assets/images/star.png',
+                fit: BoxFit.cover,
+                color: Theme.of(context).boxFeatures,
+              ),
+              Text(
+                '${ayat.nomor}',
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ],
           ),
         ),
         title: Row(
@@ -113,7 +131,9 @@ class _ListQuranScreenState extends State<ListQuranScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(ayat.namaLatin, style: TextStyles.textSmDefault),
+                  Text(ayat.namaLatin,
+                      style: TextStyles.textSmDefault
+                          .copyWith(color: Theme.of(context).textBoxFeatures)),
                   Text(
                     ayat.arti,
                     style:
@@ -124,8 +144,11 @@ class _ListQuranScreenState extends State<ListQuranScreen> {
             ),
             Text(
               ayat.nama,
-              style: TextStyles.textLgDefault
-                  .copyWith(fontWeight: FontWeight.bold),
+              style: TextStyles.textLgDefault.copyWith(
+                fontFamily: 'Amiri',
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).textListQuran,
+              ),
             ),
           ],
         ),

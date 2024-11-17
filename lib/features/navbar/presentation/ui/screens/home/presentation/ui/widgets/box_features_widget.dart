@@ -17,7 +17,7 @@ class BoxFeaturesWidget extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(
-              color: Theme.of(context).boxFeatures,
+              color: Theme.of(context).boxFeatures2,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Icon(

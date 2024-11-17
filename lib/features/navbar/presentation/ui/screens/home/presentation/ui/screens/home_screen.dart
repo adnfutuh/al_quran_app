@@ -1,12 +1,13 @@
 import 'package:al_quran_app/features/navbar/presentation/ui/screens/home/presentation/ui/widgets/box_features_widget.dart';
-import 'package:al_quran_app/features/prayer/presentation/ui/widgets/time.dart';
+import 'package:al_quran_app/features/prayertime/presentation/ui/widgets/time.dart';
 import 'package:al_quran_app/features/theme/cubit/theme_state.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../../../../core/core.dart';
-import '../../../../../../../../prayer/presentation/ui/widgets/prayer_time_widget.dart';
+import '../../../../../../../../prayertime/presentation/ui/widgets/prayer_time_widget.dart';
 import '../../../../../../../../theme/cubit/theme_cubit.dart';
 import '../../../../../../../../video/presentation/ui/widgets/video_card.dart';
 import '../widgets/home_header_widget.dart';
@@ -76,29 +77,29 @@ class HomeScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 BoxFeaturesWidget(
-                                  icon: Icons.book,
+                                  icon: FontAwesomeIcons.bookQuran,
                                   name: 'Alquran',
                                   onTap: () {
                                     context.go('/listQuran');
                                   },
                                 ),
                                 BoxFeaturesWidget(
-                                  icon: Icons.alarm,
+                                  icon: FontAwesomeIcons.volumeLow,
                                   name: 'Adzan',
                                   onTap: () {},
                                 ),
                                 BoxFeaturesWidget(
-                                  icon: Icons.location_on,
+                                  icon: FontAwesomeIcons.locationDot,
                                   name: 'Qiblat',
                                   onTap: () {},
                                 ),
                                 BoxFeaturesWidget(
-                                  icon: Icons.monetization_on,
+                                  icon: FontAwesomeIcons.dollarSign,
                                   name: 'Donation',
                                   onTap: () {},
                                 ),
                                 BoxFeaturesWidget(
-                                  icon: Icons.list,
+                                  icon: Icons.widgets,
                                   name: 'All',
                                   onTap: () {},
                                 ),
