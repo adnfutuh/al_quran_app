@@ -1,10 +1,11 @@
 import 'package:al_quran_app/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../screens/prayer/presentation/ui/screens/prayer_screen.dart';
 import '../../cubit/bottomnav_cubit.dart';
 import '../screens/home/presentation/ui/screens/home_screen.dart';
-import '../screens/book_mark/screens/book_mark_screen.dart';
-import '../screens/prayer_time/screens/prayer_time_screen.dart';
+import '../screens/note/presentation/ui/screens/note_screen.dart';
 import '../screens/profile/screens/profile_screen.dart';
 
 class BottomNavWidget extends StatelessWidget {
@@ -26,8 +27,8 @@ class BottomNavWidget extends StatelessWidget {
             index: currentIndex,
             children: const [
               HomeScreen(),
-              BookMarkScreen(),
-              PrayerTimeScreen(),
+              PrayerScreen(),
+              NoteScreen(),
               ProfileScreen(),
             ],
           );
@@ -50,13 +51,30 @@ class BottomNavWidget extends StatelessWidget {
               context.read<BottomNavCubit>().changeTab(index);
             },
             items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.bookmark), label: 'Bookmark'),
+                  icon: Icon(
+                    FontAwesomeIcons.house,
+                    size: 20,
+                  ),
+                  label: 'Home'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.access_time), label: 'Jadwal Sholat'),
+                  icon: Icon(
+                    FontAwesomeIcons.handsHolding,
+                    size: 20,
+                  ),
+                  label: 'Do\'a'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.person), label: 'Profile'),
+                  icon: Icon(
+                    FontAwesomeIcons.clock,
+                    size: 20,
+                  ),
+                  label: 'My Notes'),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    FontAwesomeIcons.user,
+                    size: 20,
+                  ),
+                  label: 'Profile'),
             ],
           );
         },
