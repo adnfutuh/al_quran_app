@@ -23,9 +23,14 @@ class VideoRemoteDatasourceImpl implements VideoRemoteDatasource {
 
       final response = await httpClientService.get(
         path:
-            'https://www.googleapis.com/youtube/v3/search?part=snippet&q=$query&type=video$eventType&key=$apiKey2',
+            'https://www.googleapis.com/youtube/v3/search?part=snippet&q=$query&type=video$eventType&maxResults=1&key=$apiKey2',
       );
-      print('API Response: ${response.data}');
+
+      if (response.statusCode != 200) {
+        throw ServerException(
+            error: response.data, message: 'Failed to fetch video data');
+      }
+
       return VideoModel.fromJson(response.data);
     } catch (e) {
       throw ServerException(error: e, message: e.toString());

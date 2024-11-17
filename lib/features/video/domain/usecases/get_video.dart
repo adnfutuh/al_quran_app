@@ -8,7 +8,7 @@ import 'package:injectable/injectable.dart';
 class GetVideo {
   final VideoRepository repository;
   GetVideo(this.repository);
-  Future<Either<AppException, VideoModel>> call(
+  Future<Either<AppException, VideoModel>> videos(
       {required String query, required bool isLive}) {
     return repository.getVideo(query: query, isLive: isLive);
   }
