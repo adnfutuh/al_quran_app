@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../core/core.dart';
 
@@ -17,7 +18,7 @@ class _VideoCardState extends State<VideoCard> {
   @override
   void initState() {
     super.initState();
-    GetIt.I<VideoCubit>().searchVideos("ngaji online");
+    GetIt.I<VideoCubit>().searchVideos("Ngaji dan Ceramah");
   }
 
   @override
@@ -39,10 +40,10 @@ class _VideoCardState extends State<VideoCard> {
                   children: [
                     Container(
                       padding: const EdgeInsets.only(left: 12, right: 6),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             "Video Live",
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
@@ -50,9 +51,10 @@ class _VideoCardState extends State<VideoCard> {
                           Text(
                             'Lihat Semua',
                             style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                color: Pallet.cyan),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              color: Theme.of(context).boxFeatures,
+                            ),
                           ),
                         ],
                       ),
@@ -68,19 +70,23 @@ class _VideoCardState extends State<VideoCard> {
                           final item = liveVideos.items[index];
                           final thumbnailUrl = item.snippet.thumbnails.high.url;
 
-                          return Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: AspectRatio(
-                                aspectRatio: 16 / 9,
-                                child: CachedNetworkImage(
-                                  imageUrl: thumbnailUrl,
-                                  fit: BoxFit.cover,
-                                  placeholder: (context, url) =>
-                                      const CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      const Icon(Icons.error),
+                          return GestureDetector(
+                            onTap: () =>
+                                context.go('/video/${item.id.videoId}'),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: AspectRatio(
+                                  aspectRatio: 16 / 9,
+                                  child: CachedNetworkImage(
+                                    imageUrl: thumbnailUrl,
+                                    fit: BoxFit.cover,
+                                    placeholder: (context, url) =>
+                                        const CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
+                                  ),
                                 ),
                               ),
                             ),
@@ -90,10 +96,10 @@ class _VideoCardState extends State<VideoCard> {
                     ),
                     Container(
                       padding: const EdgeInsets.only(left: 12, right: 6),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             "Video Non-Live",
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
@@ -101,9 +107,10 @@ class _VideoCardState extends State<VideoCard> {
                           Text(
                             'Lihat Semua',
                             style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                color: Pallet.cyan),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400,
+                              color: Theme.of(context).boxFeatures,
+                            ),
                           ),
                         ],
                       ),
@@ -118,20 +125,23 @@ class _VideoCardState extends State<VideoCard> {
                         itemBuilder: (context, index) {
                           final item = nonLiveVideos.items[index];
                           final thumbnailUrl = item.snippet.thumbnails.high.url;
-
-                          return Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: AspectRatio(
-                                aspectRatio: 16 / 9,
-                                child: CachedNetworkImage(
-                                  imageUrl: thumbnailUrl,
-                                  fit: BoxFit.cover,
-                                  placeholder: (context, url) =>
-                                      const CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      const Icon(Icons.error),
+                          return GestureDetector(
+                            onTap: () =>
+                                context.go('/video/${item.id.videoId}'),
+                            child: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: AspectRatio(
+                                  aspectRatio: 16 / 9,
+                                  child: CachedNetworkImage(
+                                    imageUrl: thumbnailUrl,
+                                    fit: BoxFit.cover,
+                                    placeholder: (context, url) =>
+                                        const CircularProgressIndicator(),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
+                                  ),
                                 ),
                               ),
                             ),
