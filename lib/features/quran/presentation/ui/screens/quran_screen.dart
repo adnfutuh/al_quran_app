@@ -41,43 +41,42 @@ class _QuranScreenState extends State<QuranScreen> {
       log(state.runtimeType.toString());
       log(state.toString());
 
-      return Scaffold(
-        backgroundColor: Theme.of(context).bgScaffold,
-        appBar: AppBar(
+      return state.maybeWhen(
+        success: (surahModel) => Scaffold(
           backgroundColor: Theme.of(context).bgScaffold,
-          title: state.maybeWhen(
-            success: (surahModel) => Text(surahModel.nama),
-            orElse: () => const Text(''),
+          appBar: AppBar(
+            backgroundColor: Theme.of(context).bgScaffold,
+            title: Text(
+              surahModel.nama,
+              style: const TextStyle(
+                fontFamily: 'Amiri',
+              ),
+            ),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () => context.go('/listQuran'),
+              //replace
+            ),
           ),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () => context.replace('/listQuran'),
+          body: Padding(
+            padding: const EdgeInsets.all(14.0),
+            child: ListView.builder(
+              itemCount: surahModel.jumlahAyat + 1,
+              itemBuilder: (context, index) {
+                if (index == 0) {
+                  return _buildSurahInfoCard(surahModel);
+                } else {
+                  return _buildAyatTile(surahModel.ayat[index - 1], index);
+                }
+              },
+            ),
           ),
         ),
-        body: _buildBody(state),
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (error) => _buildErrorView(error),
+        orElse: () => const Center(child: Text("Tidak ada data tersedia")),
       );
     });
-  }
-
-  Widget _buildBody(QuranState state) {
-    return state.maybeWhen(
-      success: (surahModel) => Padding(
-        padding: const EdgeInsets.all(14.0),
-        child: ListView.builder(
-          itemCount: surahModel.jumlahAyat + 1,
-          itemBuilder: (context, index) {
-            if (index == 0) {
-              return _buildSurahInfoCard(surahModel);
-            } else {
-              return _buildAyatTile(surahModel.ayat[index - 1], index);
-            }
-          },
-        ),
-      ),
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (error) => _buildErrorView(error),
-      orElse: () => const Center(child: Text("Tidak ada data tersedia")),
-    );
   }
 
   Widget _buildSurahInfoCard(SurahModel surahModel) {
@@ -95,7 +94,9 @@ class _QuranScreenState extends State<QuranScreen> {
                 Text(
                   '${surahModel.namaLatin} - ${surahModel.nama}',
                   style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.bold),
+                      fontFamily: 'Amiri',
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
                 Wrap(
@@ -138,26 +139,32 @@ class _QuranScreenState extends State<QuranScreen> {
       margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
       color: Theme.of(context).container3,
       elevation: 2,
-      child: ListTile(
-        title: Text(
-          ayat.ar,
-          textAlign: TextAlign.right,
-          style: const TextStyle(fontSize: 20),
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 5),
-            HtmlWidget(
-              ayat.tr,
-              textStyle: TextStyle(color: Theme.of(context).boxFeatures),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20, bottom: 10),
+        child: ListTile(
+          title: Text(
+            ayat.ar,
+            textAlign: TextAlign.right,
+            style: const TextStyle(
+              fontFamily: 'Amiri',
+              fontSize: 20,
             ),
-            const SizedBox(height: 3),
-            Text(
-              ayat.idn,
-              style: TextStyle(color: Theme.of(context).textAyatIdn),
-            ),
-          ],
+          ),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 25),
+              HtmlWidget(
+                ayat.tr,
+                textStyle: TextStyle(color: Theme.of(context).boxFeatures),
+              ),
+              const SizedBox(height: 3),
+              Text(
+                ayat.idn,
+                style: TextStyle(color: Theme.of(context).textAyatIdn),
+              ),
+            ],
+          ),
         ),
       ),
     );
