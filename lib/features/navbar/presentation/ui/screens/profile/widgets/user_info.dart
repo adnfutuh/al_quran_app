@@ -11,9 +11,14 @@ class UserInfo extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 30),
-          const CircularAvatarWidget(
+          CircularAvatarWidget(
             size: 100,
-            imagePath: 'assets/images/adnan.jpg',
+            imagePath: Image.asset(
+              'assets/images/adnan.jpg',
+              width: 100,
+              height: 100,
+              fit: BoxFit.cover,
+            ),
           ),
           const SizedBox(height: 10),
           const Column(
@@ -25,8 +30,6 @@ class UserInfo extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 10),
-
-          //-------------- ADDRESS
           ListTile(
             leading: const Icon(
               CupertinoIcons.map_pin,
@@ -56,8 +59,6 @@ class UserInfo extends StatelessWidget {
                   });
             },
           ),
-
-          //-------------- PASSWORD
           const ListTile(
             leading: Icon(
               CupertinoIcons.lock,

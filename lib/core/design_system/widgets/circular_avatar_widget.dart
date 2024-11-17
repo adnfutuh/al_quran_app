@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class CircularAvatarWidget extends StatelessWidget {
   final double size;
-  final String imagePath;
+  final Widget imagePath;
 
   const CircularAvatarWidget(
       {super.key, required this.size, required this.imagePath});
@@ -12,12 +12,7 @@ class CircularAvatarWidget extends StatelessWidget {
     return CircleAvatar(
       radius: size / 2,
       child: ClipOval(
-        child: Image.asset(
-          imagePath,
-          width: size,
-          height: size,
-          fit: BoxFit.cover,
-        ),
+        child: imagePath,
       ),
     );
   }
