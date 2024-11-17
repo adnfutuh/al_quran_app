@@ -6,27 +6,27 @@ import '../../../../core/services/geolocation/geolocation_service.dart';
 import '../../data/models/prayer_time_model.dart';
 import '../../domain/usecases/get_prayer_time.dart';
 
-part 'prayer_state.dart';
-part 'prayer_cubit.freezed.dart';
+part 'prayer_time_state.dart';
+part 'prayer_time_cubit.freezed.dart';
 
 @singleton
-class PrayerCubit extends Cubit<PrayerState> {
+class PrayerTimeCubit extends Cubit<PrayerTimeState> {
   final GetPrayerTimes getPrayerTimes;
   final GeolocationService geolocationService;
   PrayerTimeModel? _cachedPrayerTime;
 
-  PrayerCubit(
+  PrayerTimeCubit(
     this.geolocationService, {
     required this.getPrayerTimes,
-  }) : super(const PrayerState.initial());
+  }) : super(const PrayerTimeState.initial());
 
   void fetchPrayerTime() async {
     if (_cachedPrayerTime != null) {
-      emit(PrayerState.success(prayerTime: _cachedPrayerTime!));
+      emit(PrayerTimeState.success(prayerTime: _cachedPrayerTime!));
       return;
     }
 
-    emit(const PrayerState.loading());
+    emit(const PrayerTimeState.loading());
 
     try {
       final position = await geolocationService.getCurrentPosition();
@@ -37,14 +37,14 @@ class PrayerCubit extends Cubit<PrayerState> {
       );
 
       prayerTimeResult.fold(
-        (error) => emit(PrayerState.error(error: error)),
+        (error) => emit(PrayerTimeState.error(error: error)),
         (prayerTime) {
           _cachedPrayerTime = prayerTime;
-          emit(PrayerState.success(prayerTime: prayerTime));
+          emit(PrayerTimeState.success(prayerTime: prayerTime));
         },
       );
     } catch (error) {
-      emit(PrayerState.error(
+      emit(PrayerTimeState.error(
           error: DefaultAppException(message: error.toString())));
     }
   }

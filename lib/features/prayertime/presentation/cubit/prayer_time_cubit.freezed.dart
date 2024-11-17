@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'prayer_cubit.dart';
+part of 'prayer_time_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$PrayerState {
+mixin _$PrayerTimeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -69,23 +69,23 @@ mixin _$PrayerState {
 }
 
 /// @nodoc
-abstract class $PrayerStateCopyWith<$Res> {
-  factory $PrayerStateCopyWith(
-          PrayerState value, $Res Function(PrayerState) then) =
-      _$PrayerStateCopyWithImpl<$Res, PrayerState>;
+abstract class $PrayerTimeStateCopyWith<$Res> {
+  factory $PrayerTimeStateCopyWith(
+          PrayerTimeState value, $Res Function(PrayerTimeState) then) =
+      _$PrayerTimeStateCopyWithImpl<$Res, PrayerTimeState>;
 }
 
 /// @nodoc
-class _$PrayerStateCopyWithImpl<$Res, $Val extends PrayerState>
-    implements $PrayerStateCopyWith<$Res> {
-  _$PrayerStateCopyWithImpl(this._value, this._then);
+class _$PrayerTimeStateCopyWithImpl<$Res, $Val extends PrayerTimeState>
+    implements $PrayerTimeStateCopyWith<$Res> {
+  _$PrayerTimeStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PrayerState
+  /// Create a copy of PrayerTimeState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -98,13 +98,13 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$PrayerStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$PrayerTimeStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PrayerState
+  /// Create a copy of PrayerTimeState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -115,7 +115,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'PrayerState.initial()';
+    return 'PrayerTimeState.initial()';
   }
 
   @override
@@ -202,7 +202,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements PrayerState {
+abstract class _Initial implements PrayerTimeState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -215,13 +215,13 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$PrayerStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$PrayerTimeStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PrayerState
+  /// Create a copy of PrayerTimeState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -232,7 +232,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'PrayerState.loading()';
+    return 'PrayerTimeState.loading()';
   }
 
   @override
@@ -319,7 +319,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements PrayerState {
+abstract class _Loading implements PrayerTimeState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -336,13 +336,13 @@ abstract class _$$SuccessImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$PrayerStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$PrayerTimeStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PrayerState
+  /// Create a copy of PrayerTimeState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -357,7 +357,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of PrayerState
+  /// Create a copy of PrayerTimeState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -378,7 +378,7 @@ class _$SuccessImpl implements _Success {
 
   @override
   String toString() {
-    return 'PrayerState.success(prayerTime: $prayerTime)';
+    return 'PrayerTimeState.success(prayerTime: $prayerTime)';
   }
 
   @override
@@ -393,7 +393,7 @@ class _$SuccessImpl implements _Success {
   @override
   int get hashCode => Object.hash(runtimeType, prayerTime);
 
-  /// Create a copy of PrayerState
+  /// Create a copy of PrayerTimeState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -476,13 +476,13 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements PrayerState {
+abstract class _Success implements PrayerTimeState {
   const factory _Success({required final PrayerTimeModel prayerTime}) =
       _$SuccessImpl;
 
   PrayerTimeModel get prayerTime;
 
-  /// Create a copy of PrayerState
+  /// Create a copy of PrayerTimeState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
@@ -500,13 +500,13 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$PrayerStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$PrayerTimeStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PrayerState
+  /// Create a copy of PrayerTimeState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -532,7 +532,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'PrayerState.error(error: $error)';
+    return 'PrayerTimeState.error(error: $error)';
   }
 
   @override
@@ -546,7 +546,7 @@ class _$ErrorImpl implements _Error {
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  /// Create a copy of PrayerState
+  /// Create a copy of PrayerTimeState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -629,12 +629,12 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements PrayerState {
+abstract class _Error implements PrayerTimeState {
   const factory _Error({required final AppException error}) = _$ErrorImpl;
 
   AppException get error;
 
-  /// Create a copy of PrayerState
+  /// Create a copy of PrayerTimeState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>

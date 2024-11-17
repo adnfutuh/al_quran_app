@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter/cupertino.dart';
 import '../../../../../core/core.dart';
-import '../../cubit/prayer_cubit.dart';
+import '../../cubit/prayer_time_cubit.dart';
 
 class PrayerTimeWidget extends StatefulWidget {
   const PrayerTimeWidget({super.key});
@@ -17,19 +17,19 @@ class _PrayerTimeWidgetState extends State<PrayerTimeWidget> {
   @override
   void initState() {
     super.initState();
-    final cubit = GetIt.I<PrayerCubit>();
+    final cubit = GetIt.I<PrayerTimeCubit>();
     cubit.fetchPrayerTime();
   }
 
   @override
   Widget build(BuildContext context) {
-    final cubit = GetIt.I<PrayerCubit>();
+    final cubit = GetIt.I<PrayerTimeCubit>();
 
     return BlocProvider.value(
       value: cubit,
       child: Column(
         children: [
-          BlocBuilder<PrayerCubit, PrayerState>(
+          BlocBuilder<PrayerTimeCubit, PrayerTimeState>(
             builder: (context, state) {
               log(state.runtimeType.toString());
               log(state.toString());
